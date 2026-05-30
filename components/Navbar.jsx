@@ -11,8 +11,8 @@ export default function Navbar() {
   return (
     <header className="fixed left-0 right-0 top-0 isolate z-[10000] px-0 pt-2 sm:px-3.5 sm:pt-8">
       <nav className="mx-auto hidden h-[92px] max-w-[1366px] items-center rounded-[48px] bg-white px-10 shadow-[0_20px_40px_rgba(17,24,39,0.08)] md:flex">
-        <a href="#" className="flex min-w-[210px] items-center" aria-label="GSB home">
-          <img src="/logo.png" alt="GSB Study Abroad" className="h-14 w-auto object-contain" />
+        <a href="#" className="flex min-w-[210px] items-center" aria-label="SpecterEdu home">
+          <img src="/logo.png" alt="SpecterEdu Study Abroad" className="h-14 w-auto object-contain" />
         </a>
 
         <div className="flex flex-1 items-center justify-center gap-10 text-[16px] text-[#77777d]">
@@ -73,8 +73,8 @@ export default function Navbar() {
         />
 
         <div className="mobile-nav-row flex h-10 items-center justify-between">
-          <a href="#" aria-label="GSB home">
-            <img src="/logo.png" alt="GSB Study Abroad" className="h-7 w-auto object-contain" />
+          <a href="#" aria-label="SpecterEdu home">
+            <img src="/logo.png" alt="SpecterEdu Study Abroad" className="h-7 w-auto object-contain" />
           </a>
 
           <label

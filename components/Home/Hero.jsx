@@ -23,7 +23,7 @@ export default function Hero() {
               </h1>
 
               <p className="mt-8 max-w-[620px] text-base font-medium leading-7 text-white sm:text-lg">
-                From course selection to campus arrival, GSB guides you every step of the way with clear advice and trusted support.
+                From course selection to campus arrival, SpecterEdu guides you every step of the way with clear advice and trusted support.
               </p>
 
               <a
