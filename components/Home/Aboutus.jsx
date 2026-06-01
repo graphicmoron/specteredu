@@ -65,7 +65,7 @@ export default function Aboutus() {
             {stats.map((stat) => (
               <article
                 key={stat.id}
-                className="relative min-h-[210px] rounded-[34px] bg-white/75 p-8 shadow-[inset_0_0_0_14px_rgba(255,255,255,0.52)] backdrop-blur"
+                className="relative min-h-[210px] rounded-[34px] bg-gray-100 p-8 shadow-[inset_0_0_0_14px_rgba(255,255,255,1)] backdrop-blur"
               >
                 <div className="flex items-start justify-between">
                   <span className="text-base text-black">{stat.id}</span>
@@ -84,7 +84,7 @@ export default function Aboutus() {
               </article>
             ))}
 
-            <article className="relative min-h-[170px] rounded-[34px] bg-white/75 p-8 shadow-[inset_0_0_0_14px_rgba(255,255,255,0.52)] backdrop-blur sm:col-span-2">
+            <article className="relative min-h-[170px] rounded-[34px] bg-gray-100 p-8 shadow-[inset_0_0_0_14px_rgba(255,255,255,1)] backdrop-blur sm:col-span-2">
               <div className="flex justify-end">
                 <span className="flex h-[58px] w-[58px] items-center justify-center rounded-full bg-white text-txt-primary shadow-[0_12px_30px_rgba(14,41,105,0.05)]">
                   <svg aria-hidden="true" className="h-6 w-6" viewBox="0 0 20 20" fill="none">
