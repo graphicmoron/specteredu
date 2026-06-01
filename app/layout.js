@@ -1,4 +1,5 @@
 import { Poppins } from "next/font/google";
+import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${poppins.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <Navbar />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

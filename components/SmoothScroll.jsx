@@ -1,64 +1,40 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
 export default function SmoothScroll({ children }) {
-  const contentRef = useRef(null);
-
-  const refreshHeight = useCallback(() => {
-    const content = contentRef.current;
-
-    if (!content) {
-      return;
-    }
-
-    document.body.style.height = `${content.getBoundingClientRect().height}px`;
-  }, []);
+  const smootherRef = useRef(null);
 
   useEffect(() => {
-    if (!contentRef.current) {
-      return;
-    }
-
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    if (reduceMotion.matches) {
-      document.body.style.height = "";
+    if (reduceMotion.matches || smootherRef.current) {
       return;
     }
 
-    const content = contentRef.current;
-    let current = window.scrollY;
-
-    refreshHeight();
-    gsap.set(content, {
-      position: "fixed",
-      inset: "0 auto auto 0",
-      width: "100%",
-      willChange: "transform",
+    smootherRef.current = ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 0.65,
+      smoothTouch: 0.08,
+      normalizeScroll: true,
+      ignoreMobileResize: true,
+      effects: false,
     });
 
-    const update = () => {
-      current += (window.scrollY - current) * 0.09;
-      gsap.set(content, { y: -current });
-    };
+    ScrollTrigger.refresh();
 
-    gsap.ticker.add(update);
-    gsap.ticker.lagSmoothing(0);
+    return () => smootherRef.current?.kill();
+  }, []);
 
-    const resizeObserver = new ResizeObserver(refreshHeight);
-    resizeObserver.observe(content);
-    window.addEventListener("resize", refreshHeight);
-
-    return () => {
-      gsap.ticker.remove(update);
-      resizeObserver.disconnect();
-      window.removeEventListener("resize", refreshHeight);
-      document.body.style.height = "";
-      gsap.set(content, { clearProps: "position,inset,width,willChange,transform" });
-    };
-  }, [refreshHeight]);
-
-  return <div ref={contentRef}>{children}</div>;
+  return (
+    <div id="smooth-wrapper">
+      <div id="smooth-content">{children}</div>
+    </div>
+  );
 }
