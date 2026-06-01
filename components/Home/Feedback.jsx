@@ -1,31 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const reviews = [
   {
-    name: "Rohan Mehta",
+    name: "Kartik Mehta",
     school: "Brock University",
     quote:
       "I have received my Canadian study permit by submitting my application through CSB. Just within 20 days i have gotten my study permit. Throughout this journey, Team CSB helped me a lot.\n\nI highly recommend CSB to anyone who wants to study abroad.",
     avatar: "RM",
   },
   {
-    name: "Aarav Shah",
+    name: "Manish",
     school: "Thompson Rivers University",
     quote:
       "I received my ppr within 10 days. Thanks to CSB Study abroad for the greatest service I could ever receive.\n\nThey have blessed me with the best advice and have helped me throughout the whole process.",
     avatar: "AS",
   },
   {
-    name: "Kunal Jain",
+    name: "Sahaj Jain",
     school: "University of Windsor",
     quote:
       "I got my PPR within 20 days. Thanks to the Team CSB for supporting me like family throughout this journey and helping turn my dream into reality.\n\nI highly recommend CSB study for those who are dreaming to go to Canada for higher education.",
     avatar: "KJ",
   },
   {
-    name: "Nikhil Patel",
+    name: "Nayan",
     school: "Vancouver Island University",
     quote:
       "I have got my study permit from Canada. and im extremely satisfied with their services. So i would highly reccomend CSB Study Abroad, if you want to continue your studies at Canada.\n\nThanks to the entire CSB team",
@@ -69,6 +69,27 @@ function ReviewCard({ review }) {
 
 export default function Feedback() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isVideoOpen) {
+      return;
+    }
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsVideoOpen(false);
+      }
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isVideoOpen]);
 
   return (
     <section id="feedback" className="bg-background px-4 py-14 text-black sm:px-6 sm:py-16 lg:px-8">
@@ -114,7 +135,7 @@ export default function Feedback() {
             <button
               type="button"
               onClick={() => setIsVideoOpen(true)}
-              className="group relative h-[282px] w-full overflow-hidden rounded-[22px] bg-secondary text-white"
+              className="group relative aspect-video w-full overflow-hidden rounded-[22px] bg-secondary text-white sm:h-[282px] sm:aspect-auto"
               aria-label="Open student feedback video"
             >
               <img
@@ -123,8 +144,8 @@ export default function Feedback() {
                 className="h-full w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105"
               />
               <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,41,105,0.04),rgba(14,41,105,0.34))]" />
-              <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-primary shadow-[0_16px_36px_rgba(14,41,105,0.22)] transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
-                <svg aria-hidden="true" className="ml-1 h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+              <span className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-primary shadow-[0_16px_36px_rgba(14,41,105,0.22)] transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white sm:h-16 sm:w-16">
+                <svg aria-hidden="true" className="ml-1 h-6 w-6 sm:h-7 sm:w-7" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M7 4.8v10.4L15 10 7 4.8Z" />
                 </svg>
               </span>
@@ -149,20 +170,20 @@ export default function Feedback() {
 
       {isVideoOpen && (
         <div
-          className="fixed inset-0 z-[10050] flex items-center justify-center bg-black/70 px-4 py-8"
+          className="fixed inset-0 z-[10050] flex items-center justify-center overflow-y-auto bg-black/75 px-4 py-6 sm:py-8"
           role="dialog"
           aria-modal="true"
           aria-label="Student feedback video"
           onClick={() => setIsVideoOpen(false)}
         >
           <div
-            className="relative w-full max-w-[920px] overflow-hidden rounded-[24px] bg-black shadow-[0_28px_90px_rgba(0,0,0,0.35)]"
+            className="relative my-auto w-full max-w-[920px] overflow-hidden rounded-[18px] bg-black shadow-[0_28px_90px_rgba(0,0,0,0.35)] sm:rounded-[24px]"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={() => setIsVideoOpen(false)}
-              className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-[0_10px_28px_rgba(0,0,0,0.22)] transition-colors duration-300 hover:bg-primary hover:text-white focus-visible:bg-primary focus-visible:text-white"
+              className="absolute right-2 top-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-[0_10px_28px_rgba(0,0,0,0.22)] transition-colors duration-300 hover:bg-primary hover:text-white focus-visible:bg-primary focus-visible:text-white sm:right-3 sm:top-3"
               aria-label="Close student feedback video"
             >
               <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 20 20" fill="none">
@@ -170,8 +191,8 @@ export default function Feedback() {
               </svg>
             </button>
             <iframe
-              className="aspect-video w-full"
-              src="https://www.youtube.com/embed/ysz5S6PUM-U?autoplay=1"
+              className="aspect-video max-h-[calc(100vh-3rem)] w-full sm:max-h-[calc(100vh-4rem)]"
+              src="https://www.youtube.com/embed/hJ7vI37CthQ"
               title="SpecterEdu student feedback video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
