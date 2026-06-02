@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Hero() {
   return (
-    <section className="bg-background px-3 pb-10 pt-20 sm:px-5 sm:pb-14 sm:pt-28 lg:px-8 lg:pt-40">
+    <section id="home" className="bg-background px-3 pb-10 pt-20 sm:px-5 sm:pb-14 sm:pt-28 lg:px-8 lg:pt-40">
       <div className="mx-auto max-w-[1374px]">
         <div className="relative min-h-[620px] overflow-hidden rounded-[28px] bg-secondary shadow-[0_24px_70px_rgba(14,41,105,0.14)] sm:min-h-[660px] sm:rounded-[36px] lg:min-h-[720px]">
           <img

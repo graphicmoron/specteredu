@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 const reviews = [
   {
@@ -69,6 +70,11 @@ function ReviewCard({ review }) {
 
 export default function Feedback() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!isVideoOpen) {
@@ -81,12 +87,27 @@ export default function Feedback() {
       }
     };
 
+    const scrollY = window.scrollY;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
     const previousOverflow = document.body.style.overflow;
+    const previousPosition = document.body.style.position;
+    const previousTop = document.body.style.top;
+    const previousWidth = document.body.style.width;
+
+    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
     window.addEventListener("keydown", handleEscape);
 
     return () => {
+      document.documentElement.style.overflow = previousHtmlOverflow;
       document.body.style.overflow = previousOverflow;
+      document.body.style.position = previousPosition;
+      document.body.style.top = previousTop;
+      document.body.style.width = previousWidth;
+      window.scrollTo(0, scrollY);
       window.removeEventListener("keydown", handleEscape);
     };
   }, [isVideoOpen]);
@@ -124,7 +145,7 @@ export default function Feedback() {
             ))}
           </div>
 
-          <article className="flex min-h-[660px] flex-col items-center justify-center rounded-[28px] bg-white px-4 py-8 text-center">
+          <article className="flex min-h-[420px] flex-col items-center justify-center rounded-[28px] bg-white px-4 py-8 text-center sm:min-h-[560px] lg:min-h-[660px]">
             <div className="mb-4 flex justify-center">
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-xs font-medium text-black">
                 <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
@@ -135,7 +156,7 @@ export default function Feedback() {
             <button
               type="button"
               onClick={() => setIsVideoOpen(true)}
-              className="group relative aspect-video w-full overflow-hidden rounded-[22px] bg-secondary text-white sm:h-[282px] sm:aspect-auto"
+              className="group relative aspect-video w-full max-w-[520px] overflow-hidden rounded-[22px] bg-secondary text-white sm:h-[282px] sm:aspect-auto"
               aria-label="Open student feedback video"
             >
               <img
@@ -168,16 +189,16 @@ export default function Feedback() {
         </div>
       </div>
 
-      {isVideoOpen && (
+      {isMounted && isVideoOpen && createPortal(
         <div
-          className="fixed inset-0 z-[10050] flex items-center justify-center overflow-y-auto bg-black/75 px-4 py-6 sm:py-8"
+          className="fixed inset-0 z-[2147483647] grid place-items-center overflow-y-auto overscroll-contain bg-black/80 px-3 py-5 sm:px-6 sm:py-8"
           role="dialog"
           aria-modal="true"
           aria-label="Student feedback video"
           onClick={() => setIsVideoOpen(false)}
         >
           <div
-            className="relative my-auto w-full max-w-[920px] overflow-hidden rounded-[18px] bg-black shadow-[0_28px_90px_rgba(0,0,0,0.35)] sm:rounded-[24px]"
+            className="relative w-full max-w-[920px] overflow-hidden rounded-[16px] bg-black shadow-[0_28px_90px_rgba(0,0,0,0.35)] sm:rounded-[24px]"
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -191,14 +212,15 @@ export default function Feedback() {
               </svg>
             </button>
             <iframe
-              className="aspect-video max-h-[calc(100vh-3rem)] w-full sm:max-h-[calc(100vh-4rem)]"
+              className="block aspect-video max-h-[calc(100svh-2.5rem)] w-full border-0 sm:max-h-[calc(100svh-4rem)]"
               src="https://www.youtube.com/embed/hJ7vI37CthQ"
               title="SpecterEdu student feedback video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             />
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );

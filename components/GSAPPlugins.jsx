@@ -6,6 +6,6 @@ import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-export default function SmoothScroll({ children }) {
-  return children;
+export default function GSAPPlugins() {
+  return null;
 }

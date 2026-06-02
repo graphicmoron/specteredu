@@ -1,17 +1,18 @@
 import React from "react";
 
 const navItems = [
-  { label: "Home", href: "#", active: true },
-  { label: "Country", href: "#", hasChevron: true },
-  { label: "Service", href: "#" },
-  { label: "About", href: "#" },
+  { label: "Home", href: "/", active: true },
+  { label: "About", href: "/about", active: false },
+  { label: "University", href: "/university", hasChevron: true,active: false },
+  { label: "Service", href: "/service" ,active: false},
+  { label: "Contact", href: "/contact",active: false },
 ];
 
 export default function Navbar() {
   return (
     <header className="fixed left-0 right-0 top-0 isolate z-[10000] px-0 pt-2 sm:px-3.5 sm:pt-8">
       <nav className="mx-auto hidden h-[92px] max-w-[1366px] items-center rounded-[48px] bg-white px-10 shadow-[0_20px_40px_rgba(17,24,39,0.08)] md:flex">
-        <a href="#" className="flex min-w-[210px] items-center" aria-label="SpecterEdu home">
+        <a href="#home" className="flex min-w-[210px] items-center" aria-label="SpecterEdu home">
           <img src="/logo.png" alt="SpecterEdu Study Abroad" className="h-14 w-auto object-contain" />
         </a>
 
@@ -46,7 +47,7 @@ export default function Navbar() {
         </div>
 
         <a
-          href="#"
+          href="#feedback"
           className="group flex h-[68px] min-w-[154px] items-center justify-center gap-4 rounded-full border border-[#e5e5eb] bg-white px-6 text-[17px] font-semibold text-txt-primary shadow-[0_8px_24px_rgba(17,24,39,0.04)] transition-all duration-300 hover:bg-secondary hover:text-white hover:tracking-normal focus-visible:bg-secondary focus-visible:text-white"
         >
           Apply now
@@ -73,7 +74,7 @@ export default function Navbar() {
         />
 
         <div className="mobile-nav-row flex h-10 items-center justify-between">
-          <a href="#" aria-label="SpecterEdu home">
+          <a href="#home" aria-label="SpecterEdu home">
             <img src="/logo.png" alt="SpecterEdu Study Abroad" className="h-7 w-auto object-contain" />
           </a>
 
@@ -114,7 +115,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#"
+            href="#feedback"
             className="group flex items-center justify-between py-2 leading-none text-txt-secondary transition-colors duration-300 hover:text-secondary focus-visible:text-secondary active:text-secondary"
           >
             Apply Now
