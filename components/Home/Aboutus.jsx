@@ -33,7 +33,7 @@ const stats = [
 
 export default function Aboutus() {
   return (
-    <section className="bg-background px-4 py-8 text-txt-primary sm:px-6 sm:py-8 lg:px-8">
+    <section id="about" className="bg-background px-4 py-8 text-txt-primary sm:px-6 sm:py-8 lg:px-8">
                   <div className="mb-7 flex w-full justify-center lg:justify-center">
             <div className="grid w-full max-w-[300px] grid-cols-[1fr_auto_1fr] items-center gap-3">
               <span className="relative h-px bg-gradient-to-l from-primary to-transparent">
