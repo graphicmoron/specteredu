@@ -36,11 +36,6 @@ body {
   font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
-}
-
 /* navbar */
 .mobile-menu-toggle:checked ~ .mobile-nav-menu {
   max-height: 230px;
