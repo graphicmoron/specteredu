@@ -121,7 +121,7 @@ export default function Services() {
 
     rail.scrollBy({
       left: direction * (cardWidth + gap),
-      behavior: "smooth",
+      behavior: "auto",
     });
   };
 
