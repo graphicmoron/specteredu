@@ -115,7 +115,7 @@ function ServiceDetail({ service, index }) {
           </h2>
           <p className="mt-6 max-w-[470px] text-sm leading-6 text-txt-secondary sm:text-[15px]">
             After you have received your enrolment confirmation, we provide a detailed document
-            checklist and guide you through each step with clear, practical support.
+            checklist and guide you through each and every step with clear, practical support.
           </p>
 
           <div className="mt-8">
