@@ -1,6 +1,6 @@
 import React from "react";
 
-const footerLinks = ["Home", "About", "News", "Events", "Partner", "Contact"];
+const footerLinks = ["Home", "About", "services", "Contact"];
 
 const socialLinks = [
   {
@@ -51,20 +51,7 @@ const socialLinks = [
   },
 ];
 
-function CertificationBadges() {
-  return (
-    <div className="mt-4 flex flex-wrap items-center gap-3">
-      {["ICEF", "BRITISH COUNCIL", "ISANA", "QEAC"].map((badge) => (
-        <span
-          key={badge}
-          className="flex h-9 items-center rounded-full border border-border bg-background px-3 text-[10px] font-semibold tracking-normal text-secondary"
-        >
-          {badge}
-        </span>
-      ))}
-    </div>
-  );
-}
+
 
 export default function Footer() {
   return (
@@ -110,8 +97,6 @@ export default function Footer() {
               <a href="#" className="inline-flex items-center" aria-label="SpecterEdu Study Abroad home">
                 <img src="/logo.png" alt="SpecterEdu Study Abroad" className="h-14 w-auto object-contain" />
               </a>
-              <h3 className="mt-6 text-base font-semibold text-txt-primary">Certified & Trained Agent</h3>
-              <CertificationBadges />
             </div>
 
             <div>
