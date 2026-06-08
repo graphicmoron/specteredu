@@ -102,7 +102,7 @@ export default function TopUni() {
               </h3>
 
               <span
-                className={`mt-auto inline-flex border-1  min-h-11 items-center rounded-full px-6 py-3 text-sm font-medium shadow-[0_12px_26px_rgba(14,41,105,0.04)] transition-colors duration-300  "bg-background text-black group-hover:bg-secondary group-hover:text-white"
+                className={`mt-auto inline-flex border-1  min-h-11 items-center rounded-full px-6 py-3 text-sm font-medium shadow-[0_12px_26px_rgba(14,41,105,0.04)] transition-colors duration-300  "bg-background text-black group-hover:bg-secondary hover:text-white group-hover:text-white"
                 }`}
               >
                 {university.location}
