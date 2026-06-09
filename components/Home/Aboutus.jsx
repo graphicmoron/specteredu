@@ -124,7 +124,7 @@ export default function Aboutus() {
           </div>
 
           <img
-            src="/hero1.png"
+            src="/studenthome.png"
             alt="Student planning study abroad"
             className="relative z-10 ml-auto h-full min-h-[420px] w-full object-contain object-bottom lg:min-h-[660px]"
           />
