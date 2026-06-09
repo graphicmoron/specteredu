@@ -336,7 +336,7 @@ export default function AboutPage() {
         <h2 className="text-center text-[clamp(2.6rem,6vw,3.75rem)] font-medium leading-none tracking-normal">What Student say</h2>
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {students.map((student, index) => (
-            <article key={student.name} className="rounded-[32px] bg-white px-5 py-6 text-center shadow-[0_18px_55px_rgba(14,41,105,0.035)] ring-1 ring-black/[0.02] sm:px-7 lg:min-h-[610px]">
+            <article key={student.name} className="rounded-[32px] bg-white px-5 py-6 text-center shadow-[0_18px_55px_rgba(14,41,105,0.035)] ring-1 ring-black/[0.02] sm:px-7 lg:min-h-[610px] hover:cursor-pointer hover:border-primary hover:ring-primary">
               <div className="flex justify-center">
                 <DotPill>{student.university}</DotPill>
               </div>
