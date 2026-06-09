@@ -21,7 +21,7 @@ export default function Navbar() {
             <a
               key={item.label}
               href={item.href}
-              className={`flex items-center gap-1.5 leading-none transition-colors hover:text-[#101010] ${
+              className={`flex items-center gap-1.5 leading-none transition-colors hover:text-primary ${
                 item.active ? "font-medium text-[#050505]" : ""
               }`}
             >
