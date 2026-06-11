@@ -1,26 +1,28 @@
 import React from "react";
 
+
 const universities = [
   {
-    name: "University of Alberta",
-    location: "Edmonton, Canada",
+    name: "Tbilisi State Medical Univeysity",
+    location: "Tbilisi, Georgia",
     color: "#0E2969",
     ring: "secondary",
-    logo: "UA",
+    logo: "./tsmu.png",
   },
   {
-    name: "The University of British Columbia",
-    location: "Kelowna, British Columbia",
+    name: "David Tvildiani Medical University",
+    location: "Tbilisi, Georgia",
     color: "#0E2969",
     ring: "secondary",
-    logo: "UBC",
+    logo: "./dtmu.png",
+    link: "./dtmu.png",
   },
   {
-    name: "University Of Windsor",
-    location: "Ontario, Canada",
+    name: "University of Georgia",
+    location: "Tbilisi, Georgia",
     color: "#0B6EAD",
     ring: "primary",
-    logo: "UW",
+    logo: "./ug.png",
   },
 ];
 
@@ -35,27 +37,11 @@ function UniversityLogo({ university }) {
         }`}
       />
       <div className="relative flex h-[74px] w-[74px] items-center justify-center rounded-full bg-white shadow-[0_18px_38px_rgba(14,41,105,0.1)] ring-1 ring-black/[0.03] transition-transform duration-500 group-hover:scale-105">
-        <svg aria-hidden="true" className="h-11 w-11" viewBox="0 0 64 64" fill="none">
-          <path
-            d="M18 12h28v20c0 12-7 18-14 21-7-3-14-9-14-21V12Z"
-            fill="white"
-            stroke={university.color}
-            strokeWidth="3"
-            strokeLinejoin="round"
-          />
-          <path d="M24 20h16v8H24z" fill={university.color} opacity="0.18" />
-          <path d="M24 34c5 2 11 2 16 0M25 41c4 2 10 2 14 0" stroke={university.color} strokeWidth="2" strokeLinecap="round" />
-          <text
-            x="32"
-            y="29"
-            textAnchor="middle"
-            fontSize={university.logo.length > 2 ? "12" : "14"}
-            fontWeight="700"
-            fill={university.color}
-          >
-            {university.logo}
-          </text>
-        </svg>
+        <img
+          src={university.logo}
+          alt={university.name}
+          className="h-11 w-11 object-contain"
+        />
       </div>
     </div>
   );

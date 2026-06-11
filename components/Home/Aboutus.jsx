@@ -3,7 +3,7 @@ import React from "react";
 const stats = [
   {
     id: "001",
-    value: "18+",
+    value: "3+",
     label: "Years of Experience",
     icon: (
       <path
@@ -17,7 +17,7 @@ const stats = [
   },
   {
     id: "002",
-    value: "230+",
+    value: "10+",
     label: "University partners",
     icon: (
       <path
@@ -56,9 +56,8 @@ export default function Aboutus() {
           </h2>
 
           <p className="mt-5 max-w-[500px] text-sm font-normal leading-6 text-black sm:text-base">
-            Since 2007, We guide students through every step from program choice to visa application,
-            including scholarships to Achieve their study abroad dream in Australia, Canada, UK & New
-            Zealand!
+            Since 2023, We guide students through every step from program choice to visa application,
+            including scholarships to Achieve their study abroad dream in Georgia & India!
           </p>
 
           <div className="mt-10 grid max-w-[500px] grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
@@ -101,7 +100,7 @@ export default function Aboutus() {
               <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between gap-5">
                 <div>
                   <strong className="block text-[clamp(3rem,8vw,3.45rem)] font-medium leading-none text-black">
-                    9,500+
+                    236+
                   </strong>
                   <span className="mt-3 block text-base text-black sm:text-lg">
                     Students Successfully Recruited
