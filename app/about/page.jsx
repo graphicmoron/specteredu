@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 
 const milestones = [
-  { id: "001", value: "40,000+", label: "Students Counselled" },
-  { id: "002", value: "230+", label: "University Partners" },
-  { id: "003", value: "9,500+", label: "Students Successfully Recruited" },
+  { id: "001", value: "500+", label: "Students Counselled" },
+  { id: "002", value: "10+", label: "University Partners" },
+  { id: "003", value: "236+", label: "Students Successfully Recruited" },
 ];
 
 const helpTabs = [
@@ -14,7 +14,7 @@ const helpTabs = [
     title: "Free counseling",
     displayTitle: "Free counseling",
     text: "We start with a clear conversation about your goals, budget, academic profile, and preferred destinations so you know which path fits you best.",
-    image: "/hero1.png",
+    image: "/about/freecoun.png",
     alt: "Student receiving study abroad counseling",
   },
   {
@@ -22,7 +22,7 @@ const helpTabs = [
     title: "Admission Process",
     displayTitle: "Admission Process",
     text: "From shortlisting universities to preparing documents and submitting applications, our team keeps the admission process organized and stress-free.",
-    image: "/hero-graduates.png",
+    image: "/about/application.png",
     alt: "Graduates celebrating admission success",
   },
   {
@@ -30,7 +30,7 @@ const helpTabs = [
     title: "Visa Application",
     displayTitle: "Visa Application",
     text: "We guide you through document preparation, financial evidence, application steps, and interview readiness with practical support at every stage.",
-    image: "/hero1.png",
+    image: "/about/visa.png",
     alt: "Student preparing documents for a visa application",
   },
   {
@@ -38,7 +38,7 @@ const helpTabs = [
     title: "Pre-departure Support",
     displayTitle: "Pre-departure Support",
     text: "Before you fly, we help with travel preparation, accommodation planning, packing essentials, and the details that make your first days easier.",
-    image: "/hero-graduates.png",
+    image: "about/predepart.png",
     alt: "Students preparing for international departure",
   },
   {
@@ -46,7 +46,7 @@ const helpTabs = [
     title: "Post-departure Support",
     displayTitle: "Post-departure Support",
     text: "After you land, we don't disappear. Our support continues well beyond your departure. We stay in regular contact to help you settle into your new environment.",
-    image: "/hero-graduates.png",
+    image: "about/postdepart.png",
     alt: "Students arriving at an international airport",
   },
   {
@@ -54,7 +54,7 @@ const helpTabs = [
     title: "Guardianship and Welfare Services",
     displayTitle: "Guardianship and Welfare Services",
     text: "For students and families who need extra reassurance, we provide welfare guidance and ongoing care so support is available when it matters most.",
-    image: "/hero1.png",
+    image: "about/guard.png",
     alt: "Counselors supporting student welfare",
   },
 ];
@@ -65,7 +65,7 @@ const beliefs = [
     title: "Mission",
     text: "To empower students by providing comprehensive guidance and support, enabling them to achieve their educational and career goals abroad.",
     icon: "bars",
-    image: "/hero1.png",
+    image: "/about/mission.png",
     alt: "SpecterEdu team celebrating a student success",
   },
   {
@@ -73,7 +73,7 @@ const beliefs = [
     title: "Values",
     text: "Honest advice, transparent processes, and student-first decisions guide every conversation we have.",
     icon: "trophy",
-    image: "/hero-graduates.png",
+    image: "/about/values.png",
     alt: "Graduates raising diplomas together",
   },
   {
@@ -81,7 +81,7 @@ const beliefs = [
     title: "Vision",
     text: "To become the most trusted bridge between ambitious students and global education opportunities.",
     icon: "eye",
-    image: "/hero1.png",
+    image: "/about/vision.png",
     alt: "Students planning global education opportunities",
   },
 ];
@@ -204,7 +204,7 @@ export default function AboutPage() {
     <main className="bg-background px-3 pb-14 pt-24 text-black sm:px-5 sm:pb-20 sm:pt-32 lg:px-8 lg:pt-40">
       <section className="mx-auto max-w-[1374px]">
         <div className="relative min-h-[430px] overflow-hidden rounded-[30px] bg-secondary shadow-[0_24px_70px_rgba(14,41,105,0.14)] sm:min-h-[500px] sm:rounded-[42px]">
-          <img src="/hero1.png" alt="SpecterEdu students and counsellors" className="absolute inset-0 h-full w-full object-cover" />
+          <img src="/aboutus.jpg" alt="SpecterEdu students and counsellors" className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(224,37,55,0.44)_0%,rgba(255,255,255,0.18)_42%,rgba(14,41,105,0.52)_100%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_52%_62%,rgba(224,37,55,0.82)_0%,rgba(224,37,55,0.58)_31%,rgba(14,41,105,0.42)_72%,rgba(14,41,105,0.62)_100%)] mix-blend-multiply" />
           <div className="absolute inset-x-0 bottom-0 h-2/5 bg-[linear-gradient(0deg,rgba(224,37,55,0.55),transparent)]" />
@@ -235,7 +235,7 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="relative min-h-[290px] overflow-hidden rounded-[28px] bg-background sm:min-h-[360px] lg:min-h-[390px]">
-            <img src="/hero-graduates.png" alt="Graduates celebrating with diplomas" className="absolute inset-0 h-full w-full object-cover object-center" />
+            <img src="/about/about2.jpg" alt="Graduates celebrating with diplomas" className="absolute inset-0 h-full w-full object-cover object-center" />
           </div>
         </div>
       </section>

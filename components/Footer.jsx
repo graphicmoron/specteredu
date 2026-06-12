@@ -5,6 +5,7 @@ const footerLinks = ["Home", "About", "services", "Contact"];
 const socialLinks = [
   {
     label: "Facebook",
+    href: "https://www.facebook.com/",
     icon: (
       <path
         d="M11.6 7.2V5.7c0-.7.4-1.1 1.2-1.1h1.1V2.2c-.6-.1-1.3-.2-2-.2-2.1 0-3.6 1.3-3.6 3.5v1.7H6v2.7h2.3V18h3.3V9.9h2.2l.4-2.7h-2.6Z"
@@ -14,6 +15,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
+    href: "https://www.linkedin.com/",
     icon: (
       <>
         <path d="M5.2 7.4H2.8V18h2.4V7.4ZM4 6.1a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor" />
@@ -23,6 +25,7 @@ const socialLinks = [
   },
   {
     label: "Instagram",
+    href: "https://www.instagram.com/specteredu",
     icon: (
       <>
         <rect x="3" y="3" width="14" height="14" rx="4" stroke="currentColor" strokeWidth="1.8" />
@@ -33,6 +36,7 @@ const socialLinks = [
   },
   {
     label: "YouTube",
+    href: "https://www.youtube.com/",
     icon: (
       <>
         <path d="M17 7.1c-.2-.9-.8-1.5-1.7-1.7C13.9 5 10 5 10 5s-3.9 0-5.3.4C3.8 5.6 3.2 6.2 3 7.1 2.6 8.5 2.6 10 2.6 10s0 1.5.4 2.9c.2.9.8 1.5 1.7 1.7 1.4.4 5.3.4 5.3.4s3.9 0 5.3-.4c.9-.2 1.5-.8 1.7-1.7.4-1.4.4-2.9.4-2.9s0-1.5-.4-2.9Z" fill="currentColor" />
@@ -40,15 +44,16 @@ const socialLinks = [
       </>
     ),
   },
-  {
-    label: "X",
-    icon: (
-      <path
-        d="m12 8.7 5.1-5.9h-2.3l-3.9 4.6-3.1-4.6H3l5.3 7.7-5.5 6.4h2.3l4.3-5.1 3.5 5.1h4.8L12 8.7Zm-1.5 1.8-1-1.4-3-4.4h1.2l2.4 3.5 1 1.4 3.2 4.7h-1.2l-2.6-4.4Z"
-        fill="currentColor"
-      />
-    ),
-  },
+  // {
+  //   label: "X",
+  //   href: "https://x.com/",
+  //   icon: (
+  //     <path
+  //       d="m12 8.7 5.1-5.9h-2.3l-3.9 4.6-3.1-4.6H3l5.3 7.7-5.5 6.4h2.3l4.3-5.1 3.5 5.1h4.8L12 8.7Zm-1.5 1.8-1-1.4-3-4.4h1.2l2.4 3.5 1 1.4 3.2 4.7h-1.2l-2.6-4.4Z"
+  //       fill="currentColor"
+  //     />
+  //   ),
+  // },
 ];
 
 
@@ -140,8 +145,10 @@ export default function Footer() {
                 {socialLinks.map((social, index) => (
                   <a
                     key={social.label}
-                    href="#"
+                    href={social.href}
                     aria-label={social.label}
+                    target="_blank"
+                    rel="noreferrer noopener"
                     className={`flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 ${
                       index === 0
                         ? "border-black bg-black text-white hover:border-secondary hover:bg-secondary"
