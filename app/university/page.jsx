@@ -3,11 +3,11 @@ import Link from 'next/link'
 
 const universities = [
   {
-    key: 'ciu',
-    name: 'Caucasus International University',
-    shortName: 'CIU',
-    logoText: 'CIU',
-    tuition: '$6,000',
+    key: 'tsmu',
+    name: 'Tbilisi State Medical University',
+    shortName: 'TSMU',
+    logo: '/tsmu.png',
+    tuition: '$8,000',
     monthlyLiving: '$300 - $350',
     yearlyLiving: '$3,600 - $4,200',
     admission: '$150',
@@ -36,6 +36,20 @@ const universities = [
     shortName: 'UG',
     logo: '/ug.png',
     tuition: '$6,500',
+    monthlyLiving: '$300 - $350',
+    yearlyLiving: '$3,600 - $4,200',
+    admission: '$150',
+    visa: '$500',
+    consultancy: '$1,000',
+    documentation: '$500',
+    postArrival: '$500',
+  },
+  {
+    key: 'ciu',
+    name: 'Caucasus International University',
+    shortName: 'CIU',
+    logoText: 'CIU',
+    tuition: '$6,000',
     monthlyLiving: '$300 - $350',
     yearlyLiving: '$3,600 - $4,200',
     admission: '$150',
@@ -165,22 +179,22 @@ export default function Page() {
               </h2>
             </div>
             <p className="max-w-[420px] text-base leading-7 text-black/70">
-              A clean side-by-side view of yearly tuition, living costs and one-time charges for the three selected universities.
+              A clean side-by-side view of yearly tuition, living costs and one-time charges for the selected universities.
             </p>
           </div>
 
-          <div className="mt-10 hidden overflow-hidden rounded-[28px] bg-white shadow-[0_26px_70px_rgba(14,41,105,0.07)] ring-1 ring-black/[0.04] lg:block">
-            <div className="grid grid-cols-[1.05fr_repeat(3,1fr)] bg-secondary text-white">
-              <div className="flex min-h-[118px] items-end px-7 pb-7 text-sm font-semibold uppercase tracking-[0.18em] text-white/75">
+          <div className="mt-10 hidden overflow-hidden rounded-[28px] bg-white shadow-[0_26px_70px_rgba(14,41,105,0.07)] ring-1 ring-black/[0.04] xl:block">
+            <div className="grid grid-cols-[0.95fr_repeat(4,minmax(0,1fr))] bg-secondary text-white">
+              <div className="flex min-h-[118px] items-end px-5 pb-7 text-sm font-semibold uppercase tracking-[0.18em] text-white/75">
                 Particulars
               </div>
               {universities.map((university) => (
-                <div key={university.key} className="border-l border-white/15 px-6 py-6">
-                  <div className="flex items-center gap-4">
+                <div key={university.key} className="border-l border-white/15 px-4 py-6">
+                  <div className="flex items-center gap-3">
                     <UniversityMark university={university} />
                     <div>
-                      <p className="text-xl font-semibold leading-tight">{university.shortName}</p>
-                      <p className="mt-1 max-w-[220px] text-sm leading-5 text-white/78">{university.name}</p>
+                      <p className="text-lg font-semibold leading-tight">{university.shortName}</p>
+                      <p className="mt-1 max-w-[190px] text-xs leading-5 text-white/78">{university.name}</p>
                     </div>
                   </div>
                 </div>
@@ -193,23 +207,23 @@ export default function Page() {
               return (
                 <React.Fragment key={row.key}>
                   {isNewGroup && (
-                    <div className="grid grid-cols-[1.05fr_repeat(3,1fr)] border-t border-border bg-background/80">
-                      <div className="px-7 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary">
+                    <div className="grid grid-cols-[0.95fr_repeat(4,minmax(0,1fr))] border-t border-border bg-background/80">
+                      <div className="px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary">
                         {row.group}
                       </div>
-                      <div className="border-l border-border" />
-                      <div className="border-l border-border" />
-                      <div className="border-l border-border" />
+                      {universities.map((university) => (
+                        <div key={university.key} className="border-l border-border" />
+                      ))}
                     </div>
                   )}
-                  <div className="grid grid-cols-[1.05fr_repeat(3,1fr)] border-t border-border">
-                    <div className="px-7 py-5">
+                  <div className="grid grid-cols-[0.95fr_repeat(4,minmax(0,1fr))] border-t border-border">
+                    <div className="px-5 py-5">
                       <p className="font-semibold text-black">{row.label}</p>
-                      {row.note && <p className="mt-1 max-w-[280px] text-xs leading-5 text-black/55">{row.note}</p>}
+                      {row.note && <p className="mt-1 max-w-[250px] text-xs leading-5 text-black/55">{row.note}</p>}
                     </div>
                     {universities.map((university) => (
-                      <div key={university.key} className="flex items-center border-l border-border px-6 py-5">
-                        <span className="rounded-full bg-secondary/7 px-4 py-2 text-base font-bold text-secondary">
+                      <div key={university.key} className="flex items-center border-l border-border px-4 py-5">
+                        <span className="rounded-full bg-secondary/7 px-3 py-2 text-sm font-bold text-secondary">
                           {university[row.key]}
                         </span>
                       </div>
@@ -220,7 +234,7 @@ export default function Page() {
             })}
           </div>
 
-          <div className="mt-10 grid gap-5 lg:hidden">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:hidden">
             {universities.map((university) => (
               <article
                 key={university.key}
