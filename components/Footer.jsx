@@ -1,6 +1,12 @@
 import React from "react";
+import Link from "next/link";
 
-const footerLinks = ["Home", "About", "services", "Contact"];
+const footerLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Service", href: "/service" },
+  { label: "Contact", href: "/contact" },
+];
 
 const socialLinks = [
   {
@@ -109,14 +115,14 @@ export default function Footer() {
               <p className="mt-3 max-w-[230px] text-sm leading-6 text-txt-secondary">
                 SpecterEdu Study Abroad
                 <br />
-                Chandivala Mansion-Level 3, House #32, Block #G, Road #11, Banani.
+                Mirtskhulavas 9/11 Tbilisi, Georgia
               </p>
             </div>
 
             <div>
               <h3 className="text-base font-semibold text-txt-primary">Contact us</h3>
               <p className="mt-3 text-sm leading-6 text-txt-secondary">
-                Phone: +8801711-707941
+                Phone: +995 592143783
                 <br />
                 Email: info@specteredu.com
               </p>
@@ -124,13 +130,13 @@ export default function Footer() {
 
             <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-8 gap-y-4 lg:justify-end">
               {footerLinks.map((link) => (
-                <a
-                  key={link}
-                  href="#"
+                <Link
+                  key={link.label}
+                  href={link.href}
                   className="text-sm font-medium text-txt-primary transition-colors duration-300 hover:text-primary focus-visible:text-primary"
                 >
-                  {link}
-                </a>
+                  {link.label}
+                </Link>
               ))}
             </nav>
           </div>
