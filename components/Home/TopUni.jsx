@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 
 const universities = [
@@ -8,6 +9,7 @@ const universities = [
     color: "#0E2969",
     ring: "secondary",
     logo: "./tsmu.png",
+    link: "https://tbilisimedicaluniversity.com/",
   },
   {
     name: "David Tvildiani Medical University",
@@ -15,7 +17,7 @@ const universities = [
     color: "#0E2969",
     ring: "secondary",
     logo: "./dtmu.png",
-    link: "./dtmu.png",
+    link: "https://dtmuindia.com/",
   },
   {
     name: "University of Georgia",
@@ -23,6 +25,7 @@ const universities = [
     color: "#0B6EAD",
     ring: "primary",
     logo: "./ug.png",
+    link: "https://www.uga.edu/",
   },
 ];
 
@@ -86,13 +89,15 @@ export default function TopUni() {
               <h3 className="mt-8 flex min-h-[78px] max-w-[290px] items-center text-[clamp(1.9rem,4vw,2.2rem)] font-medium leading-[0.98] tracking-normal text-black">
                 {university.name}
               </h3>
-
-              <span
-                className={`mt-auto inline-flex border-1  min-h-11 items-center rounded-full px-6 py-3 text-sm font-medium shadow-[0_12px_26px_rgba(14,41,105,0.04)] transition-colors duration-300  "bg-background text-black group-hover:bg-secondary hover:text-white group-hover:text-white"
-                }`}
+              <Link
+                href={university.link || "#"}
+                target="_blank"
+                className="mt-4 text-base font-normal leading-6 text-black/80 transition-colors duration-300 hover:text-secondary focus-visible:text-secondary"
               >
-                {university.location}
-              </span>
+                <span className="mt-auto inline-flex min-h-11 items-center rounded-full border border-border bg-background px-6 py-3 text-sm font-medium text-black shadow-[0_12px_26px_rgba(14,41,105,0.04)] transition-colors duration-300 group-hover:bg-secondary group-hover:text-white hover:text-white">
+                  {university.location}
+                </span>
+              </Link>
             </article>
           ))}
         </div>
