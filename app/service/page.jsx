@@ -26,22 +26,22 @@ const discussionCards = [
 const serviceSections = [
   {
     title: "University Application",
-    image: "/hero-graduates.png",
+    image: "about/application.png",
     cta: "Request a call back",
   },
   {
     title: "Visa application Guidance",
-    image: "/hero1.png",
+    image: "service/visa.png",
     cta: "Request a service",
   },
   {
     title: "Accommodation Advice",
-    image: "/hero1.png",
+    image: "service/acco.png",
     cta: "Request a service",
   },
   {
     title: "Pre-Departure briefing",
-    image: "/hero-graduates.png",
+    image: "about/predepart.png",
     cta: "Request a service",
   },
 ];
@@ -155,7 +155,7 @@ export default function ServicePage() {
     <main className="bg-background px-4 pb-14 pt-28 text-black sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pt-40">
       <section className="mx-auto max-w-[1368px]">
         <div className="relative min-h-[420px] overflow-hidden rounded-[34px] bg-secondary shadow-[0_24px_70px_rgba(14,41,105,0.12)] sm:min-h-[500px] sm:rounded-[44px] lg:min-h-[540px]">
-          <img src="/hero1.png" alt="Student counselling session" className="absolute inset-0 h-full w-full object-cover" />
+          <img src="service/header.png" alt="Student counselling session" className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0.32)_27%,rgba(224,37,55,0.52)_55%,rgba(14,41,105,0.68)_100%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_65%,rgba(224,37,55,0.86)_0%,rgba(224,37,55,0.48)_30%,rgba(14,41,105,0.48)_70%,rgba(14,41,105,0.62)_100%)] mix-blend-multiply" />
           <div className="absolute inset-x-0 bottom-0 h-2/5 bg-[radial-gradient(circle_at_50%_0%,rgba(0,204,149,0.20),transparent_58%)]" />

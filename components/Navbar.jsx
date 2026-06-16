@@ -1,28 +1,42 @@
-import React from "react";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Home", href: "/", active: true },
-  { label: "About", href: "/about", active: false },
-  { label: "University", href: "/university", hasChevron: true,active: false },
-  { label: "Service", href: "/service" ,active: false},
-  { label: "Contact", href: "/contact",active: false },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "University", href: "/university", hasChevron: true },
+  { label: "Service", href: "/service" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+
+  const isActiveLink = (href) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+
   return (
     <header className="fixed left-0 right-0 top-0 isolate z-[10000] px-0 pt-2 sm:px-3.5 sm:pt-8">
       <nav className="mx-auto hidden h-[92px] max-w-[1366px] items-center rounded-[48px] bg-white px-10 shadow-[0_20px_40px_rgba(17,24,39,0.08)] md:flex">
-        <a href="#home" className="flex min-w-[210px] items-center" aria-label="SpecterEdu home">
+        <Link href="/" className="flex min-w-[210px] items-center" aria-label="SpecterEdu home">
           <img src="/logo.png" alt="SpecterEdu Study Abroad" className="h-14 w-auto object-contain" />
-        </a>
+        </Link>
 
         <div className="flex flex-1 items-center justify-center gap-10 text-[16px] text-[#77777d]">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.label}
               href={item.href}
+              aria-current={isActiveLink(item.href) ? "page" : undefined}
               className={`flex items-center gap-1.5 leading-none transition-colors hover:text-primary ${
-                item.active ? "font-medium text-[#050505]" : ""
+                isActiveLink(item.href) ? "font-medium text-[#050505]" : ""
               }`}
             >
               {item.label}
@@ -42,7 +56,7 @@ export default function Navbar() {
                   />
                 </svg>
               )}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -74,9 +88,9 @@ export default function Navbar() {
         />
 
         <div className="mobile-nav-row flex h-10 items-center justify-between">
-          <a href="#home" aria-label="SpecterEdu home">
+          <Link href="/" aria-label="SpecterEdu home">
             <img src="/logo.png" alt="SpecterEdu Study Abroad" className="h-7 w-auto object-contain" />
-          </a>
+          </Link>
 
           <label
             htmlFor="mobile-menu-toggle"
@@ -93,11 +107,12 @@ export default function Navbar() {
 
         <div className="mobile-nav-menu pointer-events-none flex max-h-0 -translate-y-2 flex-col justify-between overflow-hidden text-[15px] opacity-0 transition-all duration-300 ease-out">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.label}
               href={item.href}
+              aria-current={isActiveLink(item.href) ? "page" : undefined}
               className={`flex items-center justify-between py-2 leading-none ${
-                item.active ? "font-medium text-[#050505]" : "text-txt-secondary"
+                isActiveLink(item.href) ? "font-medium text-[#050505]" : "text-txt-secondary"
               }`}
             >
               {item.label}
@@ -112,9 +127,9 @@ export default function Navbar() {
                   />
                 </svg>
               )}
-            </a>
+            </Link>
           ))}
-          <a
+          <Link
             href="#feedback"
             className="group flex items-center justify-between py-2 leading-none text-txt-secondary transition-colors duration-300 hover:text-secondary focus-visible:text-secondary active:text-secondary"
           >
@@ -130,7 +145,7 @@ export default function Navbar() {
                 />
               </svg>
             </span>
-          </a>
+          </Link>
         </div>
       </nav>
     </header>
