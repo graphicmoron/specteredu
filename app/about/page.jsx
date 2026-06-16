@@ -86,6 +86,49 @@ const beliefs = [
   },
 ];
 
+const faqItems = [
+  {
+    id: "item-1",
+    question: "Is Georgia safe for Indian students?",
+    answer: "Yes, Georgia is generally considered safe for international students, including Indian students. Cities like Tbilisi have a strong student community, public transport, and support services, but students should still follow normal safety habits and stay connected with the university and local coordinators.",
+  },
+  {
+    id: "item-2",
+    question: "Is MBBS in Georgia valid in India?",
+    answer: "MBBS from Georgia can be valid in India when the university and course meet current NMC rules. After graduation, Indian students must clear the required licensing exam in India and complete any applicable registration requirements before practicing.",
+  },
+  {
+    id: "item-3",
+    question: "What is the total cost to study MBBS in Georgia?",
+    answer: "For the listed universities, yearly tuition starts from about $6,000 to $6,500. Living expenses are usually around $300 to $350 per month, with additional one-time charges for admission, visa assistance, documentation, consultancy, and post-arrival support.",
+  },
+  {
+    id: "item-4",
+    question: "Is NEET required for MBBS in Georgia?",
+    answer: "Yes, NEET qualification is required for Indian students who want to study MBBS abroad and later practice in India. Students should keep their NEET scorecard and eligibility documents ready during admission counseling.",
+  },
+  {
+    id: "item-5",
+    question: "What is the duration of MBBS in Georgia?",
+    answer: "The MBBS program in Georgia is usually 6 years, including academic study and clinical exposure. Exact structure can vary slightly by university, so students should confirm the final course plan before admission.",
+  },
+  {
+    id: "item-6",
+    question: "Is the MBBS course taught in English?",
+    answer: "Most popular medical universities in Georgia offer MBBS programs in English for international students. Students may also learn basic Georgian for hospital interaction and daily life during clinical years.",
+  },
+  {
+    id: "item-7",
+    question: "Can students get hostel or accommodation support?",
+    answer: "Yes, students can get support for hostel or private accommodation depending on the university and city. The expected monthly living cost in this comparison includes food and accommodation estimates.",
+  },
+  {
+    id: "item-8",
+    question: "When should I apply for admission?",
+    answer: "It is better to start early after NEET results so there is enough time for university selection, document preparation, admission letter, visa processing, and travel planning.",
+  },
+];
+
 const students = [
   {
     university: "University of Windsor",
@@ -329,6 +372,49 @@ export default function AboutPage() {
               <p className="mx-auto mt-6 max-w-[430px] text-base leading-6 text-black lg:mx-0">{activeBeliefItem.text}</p>
             </div>
           </TimelineSplit>
+        </div>
+      </section>
+
+      <section className="mx-auto mt-16 grid max-w-[1374px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
+            Student FAQs
+          </p>
+          <h2 className="mt-3 max-w-[620px] text-[clamp(2.25rem,5vw,3.55rem)] font-medium leading-none tracking-normal text-black">
+            Questions before choosing <span className="font-bold text-secondary">Georgia</span>
+          </h2>
+          <p className="mt-5 max-w-[520px] text-base leading-7 text-black/70">
+            Quick answers about safety, NEET, validity in India, costs, accommodation and the admission process.
+          </p>
+          <a
+            href="/contact"
+            className="mt-7 inline-flex h-12 items-center justify-center rounded-full bg-rare px-6 text-sm font-semibold text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:text-white"
+          >
+            Ask a counselor
+          </a>
+        </div>
+
+        <div className="rounded-[28px] bg-white p-2 shadow-[0_26px_70px_rgba(14,41,105,0.07)] ring-1 ring-black/[0.04]">
+          {faqItems.map((item, index) => (
+            <details
+              key={item.id}
+              className="group rounded-[20px] px-5 py-1 open:bg-background open:shadow-[0_16px_36px_rgba(14,41,105,0.05)] sm:px-7"
+              open={index === 0}
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-5 text-base font-semibold text-black marker:hidden sm:text-lg">
+                <span>{item.question}</span>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary text-white transition-transform duration-300 group-open:rotate-45">
+                  <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 3.5v9M3.5 8h9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </span>
+              </summary>
+              <p className="pb-5 pr-2 text-sm leading-7 text-black/68 sm:text-base">
+                {item.answer}
+              </p>
+              {index !== faqItems.length - 1 && <hr className="border-dashed border-border group-open:opacity-0" />}
+            </details>
+          ))}
         </div>
       </section>
 
