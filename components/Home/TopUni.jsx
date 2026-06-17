@@ -65,7 +65,7 @@ export default function TopUni() {
           </div>
 
           <a
-            href="#"
+            href="/university"
             className="group flex h-[70px] w-fit items-center justify-center gap-4 rounded-full border border-border bg-white px-6 text-base font-semibold text-black transition-all duration-300 hover:bg-secondary hover:text-white focus-visible:bg-secondary focus-visible:text-white sm:min-w-[152px]"
           >
             View All

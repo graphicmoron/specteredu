@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useCallback, useRef } from "react";
 
 const services = [
   {
@@ -108,7 +108,7 @@ const services = [
 export default function Services() {
   const scrollRef = useRef(null);
 
-  const scrollServices = (direction) => {
+  const scrollServices = useCallback((direction) => {
     const rail = scrollRef.current;
 
     if (!rail) {
@@ -117,13 +117,35 @@ export default function Services() {
 
     const firstCard = rail.querySelector("article");
     const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 360;
-    const gap = 20;
+    const gap = parseFloat(window.getComputedStyle(rail).columnGap) || 20;
+    const step = cardWidth + gap;
+    const maxScrollLeft = rail.scrollWidth - rail.clientWidth;
+    const currentPosition = rail.scrollLeft;
+    const nextPosition = currentPosition + direction * step;
 
-    rail.scrollBy({
-      left: direction * (cardWidth + gap),
-      behavior: "auto",
+    if (direction > 0 && currentPosition >= maxScrollLeft - 8) {
+      rail.scrollTo({
+        left: 0,
+        behavior: "smooth",
+      });
+
+      return;
+    }
+
+    if (direction < 0 && currentPosition <= 8) {
+      rail.scrollTo({
+        left: maxScrollLeft,
+        behavior: "smooth",
+      });
+
+      return;
+    }
+
+    rail.scrollTo({
+      left: Math.max(0, Math.min(nextPosition, maxScrollLeft)),
+      behavior: "smooth",
     });
-  };
+  }, []);
 
   return (
     <section id="services" className="overflow-hidden bg-background px-4 py-16 text-txt-primary sm:px-6 sm:py-20 lg:px-8">
@@ -224,6 +246,30 @@ export default function Services() {
             type="button"
             onClick={() => scrollServices(1)}
             className="absolute right-0 top-1/2 z-20 hidden h-11 w-11 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-white text-txt-primary shadow-[0_10px_24px_rgba(14,41,105,0.08)] transition-all duration-300 hover:translate-x-[54%] hover:bg-secondary hover:text-white focus-visible:bg-secondary focus-visible:text-white md:flex"
+            aria-label="Next service"
+          >
+            <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10h10m-4-4 4 4-4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="mt-3 flex items-center justify-center gap-4 md:hidden">
+          <button
+            type="button"
+            onClick={() => scrollServices(-1)}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white text-txt-primary shadow-[0_10px_24px_rgba(14,41,105,0.08)] transition-all duration-300 active:scale-95"
+            aria-label="Previous service"
+          >
+            <svg aria-hidden="true" className="h-5 w-5 rotate-180" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10h10m-4-4 4 4-4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scrollServices(1)}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white text-txt-primary shadow-[0_10px_24px_rgba(14,41,105,0.08)] transition-all duration-300 active:scale-95"
             aria-label="Next service"
           >
             <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 20 20" fill="none">

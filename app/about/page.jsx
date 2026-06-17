@@ -381,7 +381,7 @@ export default function AboutPage() {
             Student FAQs
           </p>
           <h2 className="mt-3 max-w-[620px] text-[clamp(2.25rem,5vw,3.55rem)] font-medium leading-none tracking-normal text-black">
-            Questions before choosing <span className="font-bold text-secondary">Georgia</span>
+            Questions before choosing <span className="font-bold text-primary">Georgia</span>
           </h2>
           <p className="mt-5 max-w-[520px] text-base leading-7 text-black/70">
             Quick answers about safety, NEET, validity in India, costs, accommodation and the admission process.
