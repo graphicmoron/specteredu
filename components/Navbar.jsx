@@ -61,7 +61,7 @@ export default function Navbar() {
         </div>
 
         <a
-          href="#feedback"
+          href="/contact"
           className="group flex h-[68px] min-w-[154px] items-center justify-center gap-4 rounded-full border border-[#e5e5eb] bg-white px-6 text-[17px] font-semibold text-txt-primary shadow-[0_8px_24px_rgba(17,24,39,0.04)] transition-all duration-300 hover:bg-secondary hover:text-white hover:tracking-normal focus-visible:bg-secondary focus-visible:text-white"
         >
           Apply now

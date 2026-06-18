@@ -134,7 +134,7 @@ function UniversityMark({ university }) {
 export default function Page() {
   return (
     <div>
-      <section className="mx-auto max-w-[1374px] px-4 pb-16 pt-40 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-[1374px] px-4 pb-16 xl:pt-40 lg:pt-40 pt-20 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[28px]">
           <img
             src="/university/hero.png"

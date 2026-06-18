@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { useForm, ValidationError } from "@formspree/react";
+import Image from "next/image";
 
 const levelOfStudyOptions = [
   "Foundation / Pathway",
@@ -12,24 +14,12 @@ const levelOfStudyOptions = [
 
 const destinationOptions = [
   "Georgia",
-  "Australia",
-  "Canada",
-  "United Kingdom",
-  "United States",
-  "New Zealand",
-];
-
-const englishProficiencyOptions = [
-  "IELTS",
-  "PTE",
-  "TOEFL",
-  "Duolingo",
-  "No test yet",
 ];
 
 const fields = [
   {
     label: "Enter your name",
+    name: "name",
     type: "input",
     wide: true,
     icon: (
@@ -38,27 +28,24 @@ const fields = [
   },
   {
     label: "Mobile number",
+    name: "phone",
     type: "input",
+    inputType: "tel",
     icon: (
       <path d="M6.5 3.8 8.3 3c.5-.2 1 .1 1.2.5l.9 2.2c.2.4.1.9-.3 1.2l-1.2.9a9.4 9.4 0 0 0 3.5 3.5l.9-1.2c.3-.4.8-.5 1.2-.3l2.2.9c.5.2.7.7.5 1.2l-.8 1.8c-.2.5-.7.8-1.2.7C9 13.8 5.2 10 4.5 4.8c-.1-.5.2-1 .7-1.2Z" />
     ),
   },
   {
     label: "Email",
+    name: "email",
     type: "input",
+    inputType: "email",
     icon: (
       <path d="M3.8 6.2c0-.8.7-1.5 1.5-1.5h9.4c.8 0 1.5.7 1.5 1.5v7c0 .8-.7 1.5-1.5 1.5H5.3c-.8 0-1.5-.7-1.5-1.5v-7Zm.6.1 5.6 4 5.6-4" />
     ),
   },
-  { label: "Interested level of study", type: "select", options: levelOfStudyOptions },
-  { label: "Study destination", type: "select", options: destinationOptions },
-  {
-    label: "Academic Qualification (Exp: HSC: GPA-4, City College, 2024)",
-    type: "input",
-    wide: true,
-  },
-  { label: "English proficiency", type: "select", options: englishProficiencyOptions },
-  { label: "Overall Score", type: "input" },
+  { label: "Interested level of study", name: "levelOfStudy", type: "select", options: levelOfStudyOptions },
+  { label: "Study destination", name: "studyDestination", type: "select", options: destinationOptions },
 ];
 
 function FieldIcon({ children }) {
@@ -75,39 +62,13 @@ function FieldIcon({ children }) {
   );
 }
 
-function ContactIllustration() {
-  return (
-    <svg aria-hidden="true" className="h-full w-full" viewBox="0 0 560 360" fill="none">
-      <path d="M255 86c38-55 118-31 125 35 34-12 68 14 65 50-4 46-54 72-93 47-26 31-70 39-105 15-31-21-39-58-20-88-26-21-14-57 28-59Z" fill="#BDEFF2" />
-      <path d="M365 101c32-13 61-23 70-8 11 18-4 87-36 106-21 12-49 7-73-12 11-33 12-63 39-86Z" fill="#5CCDD5" />
-      <path d="M429 178c14 23 7 52-18 71-25 20-58 15-80-10 42-10 76-28 98-61Z" fill="#008E9A" />
-      <path d="M354 132h57M358 151h62M363 170h45" stroke="#fff" strokeLinecap="round" strokeWidth="7" />
-      <path d="M110 185c34 85 86 99 127 71 16-11 23-32 12-48-19-27-71-11-106-56-22-29-47-13-33 33Z" fill="#E89573" />
-      <path d="M135 175 116 135c-2-6 2-12 8-13l8-1c5-1 9 2 11 6l20 47-28 1Z" fill="#32106B" />
-      <path d="M155 202c42 8 67 66 117 49 45-16 30-95-29-105-56-10-104 21-88 56Z" fill="#CE2F5C" />
-      <path d="M255 151c27 10 45 31 50 62 7 45-14 80-59 83 24-34 22-72-5-105l14-40Z" fill="#C92355" />
-      <path d="M220 133c8-32 48-36 66-13 21 28 6 65-26 68-28 2-49-24-40-55Z" fill="#F7B296" />
-      <path d="M246 108c25 4 55 0 63 21 6 17 5 32 26 38-30 15-70-1-91-33l2-26Z" fill="#563225" />
-      <path d="M226 129c-4 11-3 24 8 29 10 5 23-2 28-15l7-17-29-9-14 12Z" fill="#F7B296" />
-      <path d="M237 137c2 6 7 9 14 7M240 121l-3 15 10 1" stroke="#563225" strokeLinecap="round" strokeWidth="2" />
-      <path d="M216 181c-35 0-62-20-72-55" stroke="#F7B296" strokeLinecap="round" strokeWidth="24" />
-      <path d="M144 126c-1 21 3 40 18 51" stroke="#F7B296" strokeLinecap="round" strokeWidth="24" />
-      <path d="M142 142h58" stroke="#F7B296" strokeLinecap="round" strokeWidth="12" />
-      <circle cx="154" cy="113" r="29" fill="#009CA6" />
-      <path d="m137 113 11 11 25-29" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="6" />
-      <path d="M56 92 65 101M150 63l2 11M226 74l10 10M320 62l6 14M372 61l8 10M484 112l2 13M85 206l3 10M455 77l1 9" stroke="#E02537" strokeWidth="3" />
-      <path d="M97 112h16M49 70l10 10M301 70l8 9M392 73l9 10" stroke="#5CCDD5" strokeWidth="4" />
-      <path d="M290 63v-11M412 89v-13M124 113h-12" stroke="#F28A35" strokeWidth="4" />
-    </svg>
-  );
-}
-
-function CustomDropdown({ label, options }) {
+function CustomDropdown({ label, name, options }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
   return (
     <span className="relative block">
+      <input type="hidden" name={name} value={selected} />
       <button
         type="button"
         className={`flex h-[58px] w-full items-center gap-3 rounded-full border border-[#dedee4] bg-white px-5 text-left text-[13px] text-[#242434] shadow-[0_8px_20px_rgba(17,24,39,0.015)] transition-colors ${
@@ -153,12 +114,21 @@ function CustomDropdown({ label, options }) {
 }
 
 export default function ContactPage() {
+  const [state, handleSubmit] = useForm("xgobjkvn");
+
   return (
     <main className="bg-[#f7f7f7] px-4 pb-10 pt-28 text-black sm:px-6 sm:pb-14 sm:pt-36 lg:px-8 lg:pt-40">
       <section className="mx-auto grid min-h-[calc(100vh-10rem)] max-w-[1180px] items-end gap-8 md:grid-cols-[1.08fr_0.92fr] md:gap-4 lg:gap-9">
         <div className="flex min-h-[540px] flex-col justify-end gap-7 sm:min-h-[620px] md:min-h-[560px] lg:min-h-[640px]">
           <div className="mx-auto flex w-full max-w-[560px] flex-1 items-center justify-center md:max-w-[520px] lg:max-w-[560px]">
-            <ContactIllustration />
+            <Image
+              src="/contact.png"
+              alt="Student completing an application form"
+              width={1254}
+              height={1254}
+              className="h-full w-full object-contain"
+              priority
+            />
           </div>
 
           <article className="rounded-[32px] border border-black/5 bg-white/72 px-7 py-7 shadow-[0_18px_55px_rgba(17,24,39,0.035)] sm:px-9 sm:py-8 md:px-7 lg:px-9">
@@ -190,37 +160,77 @@ export default function ContactPage() {
             </h2>
           </div>
 
-          <form className="mt-7 grid gap-3.5 sm:grid-cols-2 md:gap-3 lg:gap-3.5" action="#">
+          {state.succeeded ? (
+            <div className="mt-7 rounded-[28px] border border-secondary/20 bg-secondary/5 px-6 py-8 text-center" role="status">
+              <h3 className="text-xl font-semibold text-secondary">Thank you!</h3>
+              <p className="mt-2 text-sm leading-6 text-[#2c2c34]">
+                Your details have been submitted. One of our counsellors will contact you soon.
+              </p>
+            </div>
+          ) : (
+          <form className="mt-7 grid gap-3.5 sm:grid-cols-2 md:gap-3 lg:gap-3.5" onSubmit={handleSubmit}>
             {fields.map((field) => (
               <label key={field.label} className={field.wide ? "sm:col-span-2" : ""}>
                 <span className="sr-only">{field.label}</span>
                 {field.type === "select" ? (
-                  <CustomDropdown label={field.label} options={field.options} />
+                  <CustomDropdown label={field.label} name={field.name} options={field.options} />
                 ) : (
                   <span className="flex h-[58px] items-center gap-3 rounded-full border border-[#dedee4] bg-white px-5 text-[13px] text-[#242434] shadow-[0_8px_20px_rgba(17,24,39,0.015)] transition-colors focus-within:border-secondary">
                     <FieldIcon>{field.icon}</FieldIcon>
                     <input
+                      type={field.inputType || "text"}
+                      name={field.name}
                       className="min-w-0 flex-1 bg-transparent text-[13px] text-[#242434] outline-none placeholder:text-[#242434]"
                       placeholder={field.label}
+                      required
                     />
                   </span>
                 )}
               </label>
             ))}
 
+            <label className="sm:col-span-2">
+              <span className="sr-only">Message</span>
+              <textarea
+                name="message"
+                rows="4"
+                required
+                placeholder="Message"
+                className="min-h-[120px] w-full resize-y rounded-[28px] border border-[#dedee4] bg-white px-5 py-4 text-[13px] text-[#242434] shadow-[0_8px_20px_rgba(17,24,39,0.015)] outline-none transition-colors placeholder:text-[#242434] focus:border-secondary"
+              />
+            </label>
+
             <label className="flex items-start gap-2 text-[10px] leading-4 text-black sm:col-span-2">
-              <input type="checkbox" className="mt-0.5 h-3 w-3 shrink-0 accent-secondary" />
+              <input type="checkbox" name="privacyConsent" value="agreed" required className="mt-0.5 h-3 w-3 shrink-0 accent-secondary" />
               <span>
                 By clicking you agree to our Privacy Policy <span aria-hidden="true">*</span>
               </span>
             </label>
 
+            <ValidationError
+              className="text-sm text-primary sm:col-span-2"
+              prefix="Email"
+              field="email"
+              errors={state.errors}
+            />
+            <ValidationError
+              className="text-sm text-primary sm:col-span-2"
+              prefix="Message"
+              field="message"
+              errors={state.errors}
+            />
+            <ValidationError
+              className="text-sm text-primary sm:col-span-2"
+              errors={state.errors}
+            />
+
             <div className="sm:col-span-2">
               <button
                 type="submit"
+                disabled={state.submitting}
                 className="group inline-flex h-14 min-w-[170px] items-center justify-center gap-4 rounded-full bg-rare px-6 text-base font-semibold text-txt-primary shadow-[0_18px_34px_rgba(14,41,105,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white focus-visible:-translate-y-0.5 focus-visible:bg-white sm:h-16 sm:min-w-[190px]"
               >
-                Submit now
+                {state.submitting ? "Submitting..." : "Submit now"}
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-white transition-colors duration-300 group-hover:bg-secondary group-focus-visible:bg-secondary">
                   <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 20 20" fill="none">
                     <path d="M8 5l5 5-5 5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
@@ -229,6 +239,7 @@ export default function ContactPage() {
               </button>
             </div>
           </form>
+          )}
         </aside>
       </section>
     </main>
