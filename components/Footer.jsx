@@ -89,7 +89,7 @@ export default function Footer() {
               Let us guide you through every step.
             </p>
             <a
-              href="#"
+              href="/contact"
               className="group mt-7 flex h-14 min-w-[220px] items-center justify-center gap-4 rounded-full bg-rare px-6 text-base font-semibold text-txt-primary shadow-[0_18px_34px_rgba(14,41,105,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white focus-visible:-translate-y-0.5 focus-visible:bg-white sm:h-16 sm:min-w-[240px]"
             >
               Get started for free

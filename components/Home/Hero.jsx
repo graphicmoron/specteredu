@@ -27,7 +27,7 @@ export default function Hero() {
               </p>
 
               <a
-                href="#"
+                href="/contact"
                 className="group mt-9 flex h-16 min-w-[236px] items-center justify-center gap-4 rounded-full bg-rare px-7 text-base font-semibold text-txt-primary shadow-[0_18px_34px_rgba(14,41,105,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white focus-visible:-translate-y-0.5 focus-visible:bg-white sm:h-[74px] sm:min-w-[270px] sm:text-lg"
               >
                 Start your journey now
