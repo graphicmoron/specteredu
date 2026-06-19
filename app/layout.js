@@ -11,7 +11,7 @@ const poppins = Poppins({
 });
 
 const whatsappHref =
-  "https://wa.me/995592143783?text=hi%20i%20want%20to%20know%20about%20collges";
+  "https://wa.me/995592143783?text=Hi!%20Can%20i%20get%20more%20information%20about%20MBBS%20in%20GEORGIA?";
 
 export const metadata = {
   title: "Specteredu",
