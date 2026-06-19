@@ -71,7 +71,7 @@ function CustomDropdown({ label, name, options }) {
       <input type="hidden" name={name} value={selected} />
       <button
         type="button"
-        className={`flex h-[58px] w-full items-center gap-3 rounded-full border border-[#dedee4] bg-white px-5 text-left text-[13px] text-[#242434] shadow-[0_8px_20px_rgba(17,24,39,0.015)] transition-colors ${
+        className={`flex h-[58px] w-full items-center gap-3 rounded-full border border-[#dedee4] bg-white px-5 text-left text-[13px] text-[#242434] shadow-[0_8px_20px_rgba(17,24,39,0.015)] transition-colors focus-visible:border-secondary focus-visible:outline-none ${
           isOpen ? "border-secondary" : ""
         }`}
         aria-haspopup="listbox"
@@ -85,7 +85,7 @@ function CustomDropdown({ label, name, options }) {
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 top-[calc(100%+10px)] z-40 w-[min(285px,calc(100vw-3rem))] rounded-[32px] border border-[#dddddf] bg-white px-6 py-6 text-black shadow-[0_18px_45px_rgba(14,41,105,0.1)] sm:w-[285px]">
+        <div className="absolute inset-x-0 top-[calc(100%+10px)] z-40 w-full rounded-[24px] border border-[#dddddf] bg-white px-5 py-5 text-black shadow-[0_18px_45px_rgba(14,41,105,0.1)]">
           <p className="text-lg font-normal leading-none text-black">{label === "Interested level of study" ? "Level of study" : label}</p>
           <div className="mt-4 border-t border-black">
             <ul role="listbox" aria-label={label}>
@@ -114,24 +114,24 @@ function CustomDropdown({ label, name, options }) {
 }
 
 export default function ContactPage() {
-  const [state, handleSubmit] = useForm("xgobjkvn");
+  const [state, handleSubmit] = useForm("xeewyzoy");
 
   return (
-    <main className="bg-[#f7f7f7] px-4 pb-10 pt-28 text-black sm:px-6 sm:pb-14 sm:pt-36 lg:px-8 lg:pt-40">
-      <section className="mx-auto grid min-h-[calc(100vh-10rem)] max-w-[1180px] items-end gap-8 md:grid-cols-[1.08fr_0.92fr] md:gap-4 lg:gap-9">
-        <div className="flex min-h-[540px] flex-col justify-end gap-7 sm:min-h-[620px] md:min-h-[560px] lg:min-h-[640px]">
-          <div className="mx-auto flex w-full max-w-[560px] flex-1 items-center justify-center md:max-w-[520px] lg:max-w-[560px]">
+    <main className="bg-[#f7f7f7] px-4 pb-12 pt-28 text-black sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pt-40">
+      <section className="mx-auto grid max-w-[1180px] items-stretch gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:gap-9">
+        <div className="flex min-w-0 flex-col gap-7 lg:h-full">
+          <div className="flex min-h-[320px] w-full flex-1 items-center justify-center overflow-hidden rounded-[28px] sm:min-h-[420px] lg:min-h-0">
             <Image
               src="/contact.png"
               alt="Student completing an application form"
               width={1254}
               height={1254}
-              className="h-full w-full object-contain"
+              className="h-full max-h-[560px] w-full object-contain rounded-[28px]"
               priority
             />
           </div>
 
-          <article className="rounded-[32px] border border-black/5 bg-white/72 px-7 py-7 shadow-[0_18px_55px_rgba(17,24,39,0.035)] sm:px-9 sm:py-8 md:px-7 lg:px-9">
+          <article className="w-full rounded-[32px] border border-black/5 bg-white/72 px-6 py-7 shadow-[0_18px_55px_rgba(17,24,39,0.035)] sm:px-9 sm:py-8">
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-secondary shadow-[0_16px_34px_rgba(14,41,105,0.055)]">
               <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 20 20" fill="none">
                 <path d="M4.5 11.2a5.5 5.5 0 0 1 11 0v3.2a1.2 1.2 0 0 1-1.2 1.2h-1.8v-4.2h3M4.5 11.4h3v4.2H5.7a1.2 1.2 0 0 1-1.2-1.2v-3.2Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" />
@@ -147,8 +147,8 @@ export default function ContactPage() {
           </article>
         </div>
 
-        <aside className="rounded-[28px] bg-white px-5 py-5 shadow-[0_22px_70px_rgba(17,24,39,0.035)] sm:rounded-[32px] sm:px-7 sm:py-7 md:px-5 md:py-5 lg:mb-0 lg:px-7 lg:py-7">
-          <div className="relative overflow-hidden rounded-[28px] border border-black/[0.04] bg-[linear-gradient(135deg,#fff_0%,#fff_43%,#ebeefc_100%)] px-7 pb-8 pt-7 shadow-[inset_0_-18px_42px_rgba(224,37,55,0.06)] sm:px-8 sm:pt-8 md:px-7 lg:px-8">
+        <aside className="flex min-w-0 flex-col rounded-[28px] bg-white p-5 shadow-[0_22px_70px_rgba(17,24,39,0.035)] sm:rounded-[32px] sm:p-7 lg:h-full">
+          <div className="relative overflow-hidden rounded-[28px] border border-black/[0.04] bg-[linear-gradient(135deg,#fff_0%,#fff_43%,#ebeefc_100%)] px-6 pb-8 pt-7 shadow-[inset_0_-18px_42px_rgba(224,37,55,0.06)] sm:px-8 sm:pt-8">
             <div className="flex h-[58px] w-[58px] items-center justify-center rounded-full bg-white text-secondary shadow-[0_18px_38px_rgba(14,41,105,0.06)]">
               <svg aria-hidden="true" className="h-[19px] w-[19px]" viewBox="0 0 20 20" fill="none">
                 <path d="m6.2 13.8 6.7-6.7 2 2-6.7 6.7H6.2v-2ZM12.1 4.7l1.2-1.2c.5-.5 1.3-.5 1.8 0l1.4 1.4c.5.5.5 1.3 0 1.8l-1.2 1.2-3.2-3.2Z" fill="currentColor" />
@@ -168,9 +168,9 @@ export default function ContactPage() {
               </p>
             </div>
           ) : (
-          <form className="mt-7 grid gap-3.5 sm:grid-cols-2 md:gap-3 lg:gap-3.5" onSubmit={handleSubmit}>
+          <form className="mt-7 grid items-start gap-3.5 sm:grid-cols-2" onSubmit={handleSubmit}>
             {fields.map((field) => (
-              <label key={field.label} className={field.wide ? "sm:col-span-2" : ""}>
+              <label key={field.label} className={`block min-w-0 ${field.wide ? "sm:col-span-2" : ""}`}>
                 <span className="sr-only">{field.label}</span>
                 {field.type === "select" ? (
                   <CustomDropdown label={field.label} name={field.name} options={field.options} />
@@ -189,7 +189,7 @@ export default function ContactPage() {
               </label>
             ))}
 
-            <label className="sm:col-span-2">
+            <label className="block sm:col-span-2">
               <span className="sr-only">Message</span>
               <textarea
                 name="message"
@@ -224,11 +224,11 @@ export default function ContactPage() {
               errors={state.errors}
             />
 
-            <div className="sm:col-span-2">
+            <div className="pt-1 sm:col-span-2">
               <button
                 type="submit"
                 disabled={state.submitting}
-                className="group inline-flex h-14 min-w-[170px] items-center justify-center gap-4 rounded-full bg-rare px-6 text-base font-semibold text-txt-primary shadow-[0_18px_34px_rgba(14,41,105,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white focus-visible:-translate-y-0.5 focus-visible:bg-white sm:h-16 sm:min-w-[190px]"
+                className="group inline-flex h-14 w-full items-center justify-center gap-4 rounded-full bg-rare px-6 text-base font-semibold text-txt-primary shadow-[0_18px_34px_rgba(14,41,105,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white focus-visible:-translate-y-0.5 focus-visible:bg-white disabled:cursor-not-allowed disabled:opacity-60 sm:h-16 sm:w-auto sm:min-w-[190px]"
               >
                 {state.submitting ? "Submitting..." : "Submit now"}
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-white transition-colors duration-300 group-hover:bg-secondary group-focus-visible:bg-secondary">

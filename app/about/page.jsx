@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 const milestones = [
   { id: "001", value: "500+", label: "Students Counselled" },
@@ -135,18 +136,21 @@ const students = [
     image: "/hero-graduates.png",
     name: "Mahmuda Khatun Anamika",
     program: "Master of Medical Biotechnology",
+    video: "https://www.youtube.com/embed/hJ7vI37CthQ",
   },
   {
     university: "Vancouver Island University",
     image: "/hero1.png",
     name: "Mohammad Sadman Sadaf",
     program: "Bachelor of Business Administration program",
+    video: "https://www.youtube.com/embed/hJ7vI37CthQ",
   },
   {
     university: "Algoma University",
     image: "/hero-graduates.png",
     name: "Nahin Afrin Nuha",
     program: "Bachelor of Computer Science",
+    video: "https://www.youtube.com/embed/hJ7vI37CthQ",
   },
 ];
 
@@ -240,8 +244,42 @@ function TimelineSplit({ children, image, alt }) {
 export default function AboutPage() {
   const [activeHelp, setActiveHelp] = useState(4);
   const [activeBelief, setActiveBelief] = useState(0);
+  const [activeStudent, setActiveStudent] = useState(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const videoTriggerRef = useRef(null);
   const activeHelpItem = helpTabs[activeHelp];
   const activeBeliefItem = beliefs[activeBelief];
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!activeStudent) {
+      return;
+    }
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setActiveStudent(null);
+      }
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleEscape);
+      videoTriggerRef.current?.focus();
+    };
+  }, [activeStudent]);
+
+  const openStudentVideo = (student, event) => {
+    videoTriggerRef.current = event.currentTarget;
+    setActiveStudent(student);
+  };
 
   return (
     <main className="bg-background px-3 pb-14 pt-24 text-black sm:px-5 sm:pb-20 sm:pt-32 lg:px-8 lg:pt-40">
@@ -419,17 +457,18 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto mt-16 max-w-[1374px]">
-        <h2 className="text-center text-[clamp(2.6rem,6vw,3.75rem)] font-medium leading-none tracking-normal">What Student say</h2>
+        <h2 className="text-center text-[clamp(2.6rem,6vw,3.75rem)] font-medium leading-none tracking-normal">What Students Say</h2>
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {students.map((student, index) => (
-            <article key={student.name} className="rounded-[32px] bg-white px-5 py-6 text-center shadow-[0_18px_55px_rgba(14,41,105,0.035)] ring-1 ring-black/[0.02] sm:px-7 lg:min-h-[610px] hover:cursor-pointer hover:border-primary hover:ring-primary">
+            <article key={student.name} className="group rounded-[32px] bg-white px-5 py-6 text-center shadow-[0_18px_55px_rgba(14,41,105,0.035)] ring-1 ring-black/[0.02] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_65px_rgba(14,41,105,0.1)] hover:ring-primary sm:px-7 lg:min-h-[610px]">
               <div className="flex justify-center">
                 <DotPill>{student.university}</DotPill>
               </div>
-              <div className="relative mt-5 min-h-[330px] overflow-hidden rounded-[28px] bg-background">
-                <img src={student.image} alt={`${student.name}, student testimonial`} className={`absolute inset-0 h-full w-full object-cover ${index === 1 ? "object-left" : "object-center"}`} />
-                <button aria-label={`Play ${student.name} testimonial`} className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-primary shadow-[0_14px_34px_rgba(14,41,105,0.18)]">
-                  <svg aria-hidden="true" className="h-5 w-5 translate-x-0.5" viewBox="0 0 20 20" fill="currentColor">
+              <div className="relative mt-5 min-h-[330px] overflow-hidden rounded-[28px] bg-background cursor-pointer">
+                <img src={student.image} alt={`${student.name}, student testimonial`} className={`absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${index === 1 ? "object-left" : "object-center"}`} />
+                <span className="absolute inset-0 bg-black/10 transition-colors duration-300 group-hover:bg-black/20" />
+                <button type="button" onClick={(event) => openStudentVideo(student, event)} aria-label={`Play ${student.name} testimonial`} className="absolute left-1/2 top-1/2 flex cursor-pointer h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-primary shadow-[0_14px_34px_rgba(14,41,105,0.18)] transition-all duration-300 hover:scale-110 hover:bg-primary hover:text-white focus-visible:scale-110 focus-visible:bg-primary focus-visible:text-white">
+                  <svg aria-hidden="true" className="h-5 w-5 translate-x-0.5 cursor-pointer" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M7 4.8v10.4L15 10 7 4.8Z" />
                   </svg>
                 </button>
@@ -442,6 +481,41 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+
+      {isMounted && activeStudent && createPortal(
+        <div
+          className="fixed inset-0 z-[2147483647] grid place-items-center overflow-y-auto overscroll-contain bg-black/80 px-3 py-5 backdrop-blur-sm sm:px-6 sm:py-8"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="student-video-title"
+          onClick={() => setActiveStudent(null)}
+        >
+          <div
+            className="relative w-full max-w-[960px] overflow-hidden rounded-[18px] bg-black shadow-[0_28px_90px_rgba(0,0,0,0.4)] sm:rounded-[26px]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <h2 id="student-video-title" className="sr-only">{activeStudent.name} student testimonial</h2>
+            <button
+              type="button"
+              onClick={() => setActiveStudent(null)}
+              className="absolute right-2 top-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-[0_10px_28px_rgba(0,0,0,0.22)] transition-colors duration-300 hover:bg-primary hover:text-white focus-visible:bg-primary focus-visible:text-white sm:right-3 sm:top-3"
+              aria-label="Close student testimonial video"
+            >
+              <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 20 20" fill="none">
+                <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
+              </svg>
+            </button>
+            <iframe
+              className="block aspect-video max-h-[calc(100svh-2.5rem)] w-full border-0 sm:max-h-[calc(100svh-4rem)]"
+              src={`${activeStudent.video}?autoplay=1&rel=0`}
+              title={`${activeStudent.name} student testimonial`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>,
+        document.body
+      )}
     </main>
   );
 }
