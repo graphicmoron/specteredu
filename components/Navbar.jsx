@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -13,6 +14,9 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const isActiveLink = (href) => {
     if (href === "/") {
@@ -85,16 +89,18 @@ export default function Navbar() {
           type="checkbox"
           className="mobile-menu-toggle sr-only"
           aria-label="Toggle menu"
+          checked={isMobileMenuOpen}
+          onChange={(event) => setIsMobileMenuOpen(event.target.checked)}
         />
 
         <div className="mobile-nav-row flex h-10 items-center justify-between">
-          <Link href="/" aria-label="SpecterEdu home">
+          <Link href="/" aria-label="SpecterEdu home" onClick={closeMobileMenu}>
             <img src="/logo.png" alt="SpecterEdu Study Abroad" className="h-7 w-auto object-contain" />
           </Link>
 
           <label
             htmlFor="mobile-menu-toggle"
-            aria-label="Open menu"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             className="mobile-menu-button relative z-20 flex h-10 w-10 shrink-0 touch-manipulation cursor-pointer items-center justify-center rounded-full border border-[#eeeeef] bg-white text-[#202020] shadow-[0_6px_18px_rgba(17,24,39,0.08)] transition-colors duration-300"
           >
             <span className="relative h-4 w-4" aria-hidden="true">
@@ -110,6 +116,7 @@ export default function Navbar() {
             <Link
               key={item.label}
               href={item.href}
+              onClick={closeMobileMenu}
               aria-current={isActiveLink(item.href) ? "page" : undefined}
               className={`flex items-center justify-between py-2 leading-none ${
                 isActiveLink(item.href) ? "font-medium text-[#050505]" : "text-txt-secondary"
@@ -131,6 +138,7 @@ export default function Navbar() {
           ))}
           <Link
             href="#feedback"
+            onClick={closeMobileMenu}
             className="group flex items-center justify-between py-2 leading-none text-txt-secondary transition-colors duration-300 hover:text-secondary focus-visible:text-secondary active:text-secondary"
           >
             Apply Now

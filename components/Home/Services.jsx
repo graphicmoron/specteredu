@@ -195,7 +195,7 @@ export default function Services() {
               return (
                 <article
                   key={service.number}
-                  className="service-card group relative flex min-h-[430px] w-[82vw] max-w-[390px] shrink-0 snap-start flex-col overflow-hidden rounded-[34px] bg-white px-7 pb-8 pt-7 shadow-[0_16px_42px_rgba(14,41,105,0.045)] ring-1 ring-black/[0.035] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_22px_54px_rgba(14,41,105,0.09)] focus-within:-translate-y-1.5 sm:min-h-[470px] sm:w-[380px] sm:px-9 sm:pb-10 sm:pt-8 lg:w-[368px]"
+                  className="service-card group relative flex min-h-[430px] w-[82vw] max-w-[390px] shrink-0 snap-center flex-col overflow-hidden rounded-[34px] bg-white px-7 pb-8 pt-7 shadow-[0_16px_42px_rgba(14,41,105,0.045)] ring-1 ring-black/[0.035] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_22px_54px_rgba(14,41,105,0.09)] focus-within:-translate-y-1.5 sm:min-h-[470px] sm:w-[380px] sm:snap-start sm:px-9 sm:pb-10 sm:pt-8 lg:w-[368px]"
                   style={{ animationDelay: `${index * 120}ms` }}
                 >
                   <div
