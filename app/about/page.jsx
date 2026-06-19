@@ -242,7 +242,7 @@ function TimelineSplit({ children, image, alt }) {
 }
 
 export default function AboutPage() {
-  const [activeHelp, setActiveHelp] = useState(4);
+  const [activeHelp, setActiveHelp] = useState(0);
   const [activeBelief, setActiveBelief] = useState(0);
   const [activeStudent, setActiveStudent] = useState(null);
   const [isMounted, setIsMounted] = useState(false);
@@ -362,7 +362,7 @@ export default function AboutPage() {
         </div>
         <div className="mt-6">
           <TimelineSplit image={activeHelpItem.image} alt={activeHelpItem.alt}>
-            <div key={activeHelpItem.title} className="flex min-h-[390px] flex-col justify-between text-center transition-opacity duration-300 lg:text-left">
+            <div key={activeHelpItem.title} className="flex flex-col gap-6 text-center transition-opacity duration-300 lg:min-h-[390px] lg:justify-between lg:gap-8 lg:text-left">
               <div>
                 <h3 className="relative mx-auto max-w-[360px] pl-7 text-left text-[clamp(2.3rem,5vw,3rem)] font-medium leading-[0.92] tracking-normal text-black lg:mx-0">
                   <span className="absolute left-0 top-3 h-2 w-2 rounded-full bg-black" />
@@ -372,7 +372,7 @@ export default function AboutPage() {
                   {activeHelpItem.text}
                 </p>
               </div>
-              <span className="mt-8 flex h-16 w-16 items-center justify-center rounded-full bg-background text-base text-black">{activeHelpItem.number}</span>
+              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-background text-base text-black">{activeHelpItem.number}</span>
             </div>
           </TimelineSplit>
         </div>
@@ -381,20 +381,20 @@ export default function AboutPage() {
       <section className="mx-auto mt-16 max-w-[1374px] text-center">
         <h2 className="text-[clamp(2.6rem,6vw,3.75rem)] font-medium leading-none tracking-normal">What we believe in</h2>
         <p className="mt-4 text-base text-black sm:text-lg">Since 2007, SpecterEdu has been inspiring students to excel</p>
-        <div className="mx-auto mt-7 flex w-fit flex-wrap justify-center gap-2 rounded-full bg-white p-2 shadow-[0_16px_42px_rgba(14,41,105,0.04)]">
+        <div className="mx-auto mt-7 grid w-full max-w-[430px] grid-cols-3 gap-1.5 rounded-full bg-white p-1.5 shadow-[0_16px_42px_rgba(14,41,105,0.04)] sm:flex sm:w-fit sm:max-w-none sm:gap-2 sm:p-2">
           {beliefs.map((belief, index) => (
             <button
               key={belief.title}
               type="button"
               onClick={() => setActiveBelief(index)}
-              className={`inline-flex cursor-pointer items-center gap-3 rounded-full px-4 py-3 text-sm font-medium transition-all duration-300 ${
+              className={`inline-flex min-w-0 cursor-pointer items-center justify-center gap-1.5 rounded-full px-1.5 py-2 text-xs font-medium transition-all duration-300 sm:gap-3 sm:px-4 sm:py-3 sm:text-sm ${
                 activeBelief === index
                   ? "bg-primary text-white shadow-[0_12px_28px_rgba(224,37,55,0.18)]"
                   : "bg-background text-black hover:bg-white hover:text-secondary"
               }`}
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black">
-                <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 20 20" fill="none">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-black sm:h-9 sm:w-9">
+                <svg aria-hidden="true" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="none">
                   <BeliefIcon type={belief.icon} />
                 </svg>
               </span>
