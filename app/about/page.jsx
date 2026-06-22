@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import Founders from './../../components/Home/Founders';
 
 const milestones = [
   { id: "001", value: "500+", label: "Students Counselled" },
@@ -380,7 +381,7 @@ export default function AboutPage() {
 
       <section className="mx-auto mt-16 max-w-[1374px] text-center">
         <h2 className="text-[clamp(2.6rem,6vw,3.75rem)] font-medium leading-none tracking-normal">What we believe in</h2>
-        <p className="mt-4 text-base text-black sm:text-lg">Since 2007, SpecterEdu has been inspiring students to excel</p>
+        <p className="mt-4 text-base text-black sm:text-lg">Since 2023, SpecterEdu has been inspiring students to excel</p>
         <div className="mx-auto mt-7 grid w-full max-w-[430px] grid-cols-3 gap-1.5 rounded-full bg-white p-1.5 shadow-[0_16px_42px_rgba(14,41,105,0.04)] sm:flex sm:w-fit sm:max-w-none sm:gap-2 sm:p-2">
           {beliefs.map((belief, index) => (
             <button
@@ -412,7 +413,7 @@ export default function AboutPage() {
           </TimelineSplit>
         </div>
       </section>
-
+          <Founders />
       <section className="mx-auto mt-16 grid max-w-[1374px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">

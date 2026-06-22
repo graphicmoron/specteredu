@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const universities = [
   {
-    name: "Tbilisi State Medical Univeysity",
+    name: "Tbilisi State Medical University",
     location: "Tbilisi, Georgia",
     color: "#0E2969",
     ring: "secondary",
