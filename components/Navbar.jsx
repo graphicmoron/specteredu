@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,8 +15,34 @@ const navItems = [
 export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileNavRef = useRef(null);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
+
+    const closeOnScroll = () => setIsMobileMenuOpen(false);
+    const closeOnOutsidePress = (event) => {
+      if (!mobileNavRef.current?.contains(event.target)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("scroll", closeOnScroll, { passive: true });
+    document.addEventListener("touchmove", closeOnScroll, { passive: true, capture: true });
+    document.addEventListener("wheel", closeOnScroll, { passive: true, capture: true });
+    document.addEventListener("pointerdown", closeOnOutsidePress, { capture: true });
+
+    return () => {
+      window.removeEventListener("scroll", closeOnScroll);
+      document.removeEventListener("touchmove", closeOnScroll, { capture: true });
+      document.removeEventListener("wheel", closeOnScroll, { capture: true });
+      document.removeEventListener("pointerdown", closeOnOutsidePress, { capture: true });
+    };
+  }, [isMobileMenuOpen]);
 
   const isActiveLink = (href) => {
     if (href === "/") {
@@ -83,7 +109,7 @@ export default function Navbar() {
         </a>
       </nav>
 
-      <nav className="mobile-nav relative z-[10000] mx-auto flex min-h-[60px] w-[calc(100%-20px)] max-w-[350px] flex-col overflow-hidden rounded-[28px] bg-white px-7 pb-0 pt-2.5 shadow-[0_18px_36px_rgba(17,24,39,0.12)] transition-all duration-300 ease-out md:hidden">
+      <nav ref={mobileNavRef} className="mobile-nav relative z-[10000] mx-auto flex min-h-[60px] w-[calc(100%-20px)] max-w-[350px] flex-col overflow-hidden rounded-[28px] bg-white px-7 pb-0 pt-2.5 shadow-[0_18px_36px_rgba(17,24,39,0.12)] transition-all duration-300 ease-out md:hidden">
         <input
           id="mobile-menu-toggle"
           type="checkbox"

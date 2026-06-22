@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import Image from "next/image";
 
@@ -65,41 +65,94 @@ function FieldIcon({ children }) {
 function CustomDropdown({ label, name, options }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("");
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const closeOnOutsidePress = (event) => {
+      if (!dropdownRef.current?.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsidePress);
+    document.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsidePress);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isOpen]);
 
   return (
-    <span className="relative block">
-      <input type="hidden" name={name} value={selected} />
-      <button
-        type="button"
-        className={`flex h-[58px] w-full items-center gap-3 rounded-full border border-[#dedee4] bg-white px-5 text-left text-[13px] text-[#242434] shadow-[0_8px_20px_rgba(17,24,39,0.015)] transition-colors focus-visible:border-secondary focus-visible:outline-none ${
-          isOpen ? "border-secondary" : ""
-        }`}
-        aria-haspopup="listbox"
-        aria-expanded={isOpen}
-        onClick={() => setIsOpen((current) => !current)}
+    <span ref={dropdownRef} className="relative block">
+      <select
+        name={name}
+        value={selected}
+        onChange={(event) => setSelected(event.target.value)}
+        onInvalid={() => setIsOpen(true)}
+        required
+        className="h-[58px] w-full cursor-pointer appearance-auto rounded-full border border-[#cfd2dc] bg-white px-5 text-[13px] text-[#242434] outline-none focus:border-secondary sm:pointer-events-none sm:absolute sm:left-0 sm:top-0 sm:h-px sm:w-px sm:opacity-0"
       >
-        <span className="min-w-0 flex-1 truncate">{selected || label}</span>
-        <svg aria-hidden="true" className={`h-4 w-4 shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="none">
-          <path d="m6 8 4 4 4-4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" />
-        </svg>
-      </button>
+        <option value="" disabled>
+          {label}
+        </option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
 
-      {isOpen && (
-        <div className="absolute inset-x-0 top-[calc(100%+10px)] z-40 w-full rounded-[24px] border border-[#dddddf] bg-white px-5 py-5 text-black shadow-[0_18px_45px_rgba(14,41,105,0.1)]">
-          <p className="text-lg font-normal leading-none text-black">{label === "Interested level of study" ? "Level of study" : label}</p>
-          <div className="mt-4 border-t border-black">
-            <ul role="listbox" aria-label={label}>
+      <div className="relative hidden sm:block">
+        <button
+          type="button"
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((current) => !current)}
+          className={`flex h-[58px] w-full items-center gap-4 rounded-full border bg-white px-5 text-left text-[13px] text-[#353542] outline-none transition-all hover:border-secondary focus-visible:ring-4 focus-visible:ring-secondary/10 ${
+            isOpen ? "border-secondary shadow-[0_8px_24px_rgba(14,41,105,0.08)]" : "border-[#cfd2dc]"
+          }`}
+        >
+          <span className="min-w-0 flex-1 truncate">{selected || label}</span>
+          <svg
+            aria-hidden="true"
+            className={`h-4 w-4 shrink-0 text-secondary transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <path d="m6 8 4 4 4-4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+          </svg>
+        </button>
+
+        {isOpen && (
+          <div className="absolute inset-x-0 top-[calc(100%+10px)] z-50 overflow-hidden rounded-[26px] border border-[#d9d9de] bg-white px-5 pb-4 pt-5 text-black shadow-[0_22px_55px_rgba(14,41,105,0.14)]">
+            <p className="text-[18px] font-medium leading-none text-[#202027]">
+              {label === "Interested level of study" ? "Level of study" : label}
+            </p>
+            <ul className="mt-4 border-t border-[#202027]" role="listbox" aria-label={label}>
               {options.map((option) => (
-                <li key={option} className="border-b border-[#e3e3e3] last:border-b-0">
+                <li key={option} className="border-b border-[#dedee2] last:border-b-0">
                   <button
                     type="button"
-                    className="w-full py-3 text-left text-lg font-normal leading-none text-[#66717a] transition-colors hover:text-secondary focus-visible:text-secondary"
                     role="option"
                     aria-selected={selected === option}
                     onClick={() => {
                       setSelected(option);
                       setIsOpen(false);
                     }}
+                    className={`w-full py-3 text-left text-[17px] leading-[1.05] transition-colors hover:text-secondary focus-visible:text-secondary focus-visible:outline-none ${
+                      selected === option ? "font-medium text-secondary" : "text-[#68717d]"
+                    }`}
                   >
                     {option}
                   </button>
@@ -107,8 +160,8 @@ function CustomDropdown({ label, name, options }) {
               ))}
             </ul>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </span>
   );
 }
@@ -119,7 +172,7 @@ export default function ContactPage() {
   return (
     <main className="bg-[#f7f7f7] px-4 pb-12 pt-28 text-black sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pt-40">
       <section className="mx-auto grid max-w-[1180px] items-stretch gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:gap-9">
-        <div className="flex min-w-0 flex-col gap-7 lg:h-full">
+        <div className="order-2 flex min-w-0 flex-col gap-7 lg:order-1 lg:h-full">
           <div className="flex min-h-[320px] w-full flex-1 items-center justify-center overflow-hidden rounded-[28px] sm:min-h-[420px] lg:min-h-0">
             <Image
               src="/contact.png"
@@ -147,7 +200,7 @@ export default function ContactPage() {
           </article>
         </div>
 
-        <aside className="flex min-w-0 flex-col rounded-[28px] bg-white p-5 shadow-[0_22px_70px_rgba(17,24,39,0.035)] sm:rounded-[32px] sm:p-7 lg:h-full">
+        <aside className="order-1 flex min-w-0 flex-col rounded-[28px] bg-white p-5 shadow-[0_22px_70px_rgba(17,24,39,0.035)] sm:rounded-[32px] sm:p-7 lg:order-2 lg:h-full">
           <div className="relative overflow-hidden rounded-[28px] border border-black/[0.04] bg-[linear-gradient(135deg,#fff_0%,#fff_43%,#ebeefc_100%)] px-6 pb-8 pt-7 shadow-[inset_0_-18px_42px_rgba(224,37,55,0.06)] sm:px-8 sm:pt-8">
             <div className="flex h-[58px] w-[58px] items-center justify-center rounded-full bg-white text-secondary shadow-[0_18px_38px_rgba(14,41,105,0.06)]">
               <svg aria-hidden="true" className="h-[19px] w-[19px]" viewBox="0 0 20 20" fill="none">
