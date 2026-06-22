@@ -19,7 +19,7 @@ export default function Hero() {
           <div className="relative z-10 flex min-h-[620px] items-center justify-center px-5 py-16 text-center text-white sm:min-h-[660px] sm:px-8 lg:min-h-[720px]">
             <div className="mx-auto flex w-full max-w-[780px] flex-col items-center">
               <h1 className="text-[clamp(3rem,9vw,5.6rem)] font-semibold leading-[0.96] tracking-normal">
-                Study abroad is closer than you think
+                Your MBBS Dream Abroad Starts Here
               </h1>
 
               <p className="mt-8 max-w-[620px] text-base font-medium leading-7 text-white sm:text-lg">
