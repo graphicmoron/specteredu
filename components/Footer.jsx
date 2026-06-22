@@ -11,7 +11,7 @@ const footerLinks = [
 const socialLinks = [
   {
     label: "Facebook",
-    href: "https://www.facebook.com/",
+    href: "https://www.facebook.com/people/Specter-EDU-International/61591367570654/?mibextid=wwXIfr&rdid=l6v7WuKpC2PapduD&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DDx3WCdPj%2F%3Fmibextid%3DwwXIfr",
     icon: (
       <path
         d="M11.6 7.2V5.7c0-.7.4-1.1 1.2-1.1h1.1V2.2c-.6-.1-1.3-.2-2-.2-2.1 0-3.6 1.3-3.6 3.5v1.7H6v2.7h2.3V18h3.3V9.9h2.2l.4-2.7h-2.6Z"

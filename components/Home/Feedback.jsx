@@ -5,33 +5,34 @@ import { createPortal } from "react-dom";
 
 const reviews = [
   {
-    name: "Kartik Mehta",
-    school: "Brock University",
+    name: "Rajveer Singh,",
+    school: "Kota, Rajasthan",
     quote:
-      "I have received my Canadian study permit by submitting my application through CSB. Just within 20 days i have gotten my study permit. Throughout this journey, Team CSB helped me a lot.\n\nI highly recommend CSB to anyone who wants to study abroad.",
-    avatar: "RM",
+      "I was confused between studying in India and abroad after NEET. The Specter Edu team explained everything clearly, from university selection to visa processing. They stayed in touch even after I reached Georgia. The support was much better than I expected.",
+    avatar: "RS",
   },
   {
-    name: "Manish",
-    school: "Thompson Rivers University",
+    name: "Priya Sharma",
+    school: "Indore, Madhya Pradesh",
     quote:
-      "I received my ppr within 10 days. Thanks to CSB Study abroad for the greatest service I could ever receive.\n\nThey have blessed me with the best advice and have helped me throughout the whole process.",
-    avatar: "AS",
+      "My parents were worried about safety and accommodation. Specter Edu arranged everything smoothly and answered all our questions patiently. Today I’m studying MBBS in Georgia and I feel confident about my decision.",
+    avatar: "PS",
   },
   {
-    name: "Sahaj Jain",
-    school: "University of Windsor",
+    name: "Harsh Patel",
+    school: "Ahmedabad, Gujarat",
     quote:
-      "I got my PPR within 20 days. Thanks to the Team CSB for supporting me like family throughout this journey and helping turn my dream into reality.\n\nI highly recommend CSB study for those who are dreaming to go to Canada for higher education.",
-    avatar: "KJ",
+      "The best thing about Specter Edu is transparency. There were no hidden charges and every step was explained beforehand. The admission process was surprisingly easy because of their guidance.",
+    avatar: "HP",
   },
   {
-    name: "Nayan",
-    school: "Vancouver Island University",
+    name: "Muskan Agarwal,",
+    school: "Jaipur, Rajasthan",
     quote:
-      "I have got my study permit from Canada. and im extremely satisfied with their services. So i would highly reccomend CSB Study Abroad, if you want to continue your studies at Canada.\n\nThanks to the entire CSB team",
-    avatar: "NP",
+      "As a female student, safety was my family’s biggest concern. Specter Edu connected us with current students and provided detailed information about accommodation and campus life. That gave us a lot of confidence.",
+    avatar: "MA",
   },
+  
 ];
 
 function Stars() {
