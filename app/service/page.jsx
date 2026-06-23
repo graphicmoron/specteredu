@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const discussionCards = [
   {
@@ -26,22 +27,22 @@ const discussionCards = [
 const serviceSections = [
   {
     title: "University Application",
-    image: "about/application.png",
+    image: "/about/application.png",
     cta: "Request a call back",
   },
   {
     title: "Visa application Guidance",
-    image: "service/visa.png",
+    image: "/service/visa.png",
     cta: "Request a service",
   },
   {
     title: "Accommodation Advice",
-    image: "service/acco.png",
+    image: "/service/acco.png",
     cta: "Request a service",
   },
   {
     title: "Pre-Departure briefing",
-    image: "about/predepart.png",
+    image: "/about/predepart.png",
     cta: "Request a service",
   },
 ];
@@ -141,7 +142,13 @@ function ServiceDetail({ service, index }) {
       </div>
 
       <div className={`relative min-h-[290px] overflow-hidden rounded-[28px] bg-secondary shadow-[0_24px_70px_rgba(14,41,105,0.1)] sm:min-h-[380px] sm:rounded-[34px] lg:min-h-[460px] ${reverse ? "lg:order-1" : ""}`}>
-        <img src={service.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <Image
+          src={service.image}
+          alt=""
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0.08)_24%,rgba(224,37,55,0.34)_58%,rgba(14,41,105,0.46)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_65%,rgba(224,37,55,0.58)_0%,rgba(224,37,55,0.32)_30%,rgba(14,41,105,0.30)_70%,rgba(14,41,105,0.42)_100%)] mix-blend-multiply" />
         <div className="absolute inset-x-0 bottom-0 h-2/5 bg-[radial-gradient(circle_at_50%_0%,rgba(0,204,149,0.18),transparent_58%)]" />
@@ -155,7 +162,15 @@ export default function ServicePage() {
     <main className="bg-background px-4 pb-14 pt-28 text-black sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pt-40">
       <section className="mx-auto max-w-[1368px]">
         <div className="relative min-h-[420px] overflow-hidden rounded-[34px] bg-secondary shadow-[0_24px_70px_rgba(14,41,105,0.12)] sm:min-h-[500px] sm:rounded-[44px] lg:min-h-[540px]">
-          <img src="service/header.png" alt="Student counselling session" className="absolute inset-0 h-full w-full object-cover" />
+          <Image
+            src="/service/header.png"
+            alt="Student counselling session"
+            fill
+            preload
+            fetchPriority="high"
+            sizes="100vw"
+            className="object-cover"
+          />
           <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0.32)_27%,rgba(224,37,55,0.52)_55%,rgba(14,41,105,0.68)_100%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_65%,rgba(224,37,55,0.86)_0%,rgba(224,37,55,0.48)_30%,rgba(14,41,105,0.48)_70%,rgba(14,41,105,0.62)_100%)] mix-blend-multiply" />
           <div className="absolute inset-x-0 bottom-0 h-2/5 bg-[radial-gradient(circle_at_50%_0%,rgba(0,204,149,0.20),transparent_58%)]" />

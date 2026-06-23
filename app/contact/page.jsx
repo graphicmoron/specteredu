@@ -180,7 +180,9 @@ export default function ContactPage() {
               width={1254}
               height={1254}
               className="h-full max-h-[560px] w-full object-contain rounded-[28px]"
-              priority
+              preload
+              fetchPriority="high"
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
 

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import Founders from './../../components/Home/Founders';
 
 const milestones = [
@@ -40,7 +41,7 @@ const helpTabs = [
     title: "Pre-departure Support",
     displayTitle: "Pre-departure Support",
     text: "Before you fly, we help with travel preparation, accommodation planning, packing essentials, and the details that make your first days easier.",
-    image: "about/predepart.png",
+    image: "/about/predepart.png",
     alt: "Students preparing for international departure",
   },
   {
@@ -48,7 +49,7 @@ const helpTabs = [
     title: "Post-departure Support",
     displayTitle: "Post-departure Support",
     text: "After you land, we don't disappear. Our support continues well beyond your departure. We stay in regular contact to help you settle into your new environment.",
-    image: "about/postdepart.png",
+    image: "/about/postdepart.png",
     alt: "Students arriving at an international airport",
   },
   {
@@ -56,7 +57,7 @@ const helpTabs = [
     title: "Guardianship and Welfare Services",
     displayTitle: "Guardianship and Welfare Services",
     text: "For students and families who need extra reassurance, we provide welfare guidance and ongoing care so support is available when it matters most.",
-    image: "about/guard.png",
+    image: "/about/guard.png",
     alt: "Counselors supporting student welfare",
   },
 ];
@@ -236,7 +237,13 @@ function TimelineSplit({ children, image, alt }) {
         </span>
       </div>
       <div className="relative min-h-[250px] overflow-hidden rounded-[28px] bg-secondary sm:min-h-[340px] lg:min-h-[390px]">
-        <img src={image} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover"
+        />
       </div>
     </article>
   );
@@ -286,7 +293,15 @@ export default function AboutPage() {
     <main className="bg-background px-3 pb-14 pt-24 text-black sm:px-5 sm:pb-20 sm:pt-32 lg:px-8 lg:pt-40">
       <section className="mx-auto max-w-[1374px]">
         <div className="relative min-h-[430px] overflow-hidden rounded-[30px] bg-secondary shadow-[0_24px_70px_rgba(14,41,105,0.14)] sm:min-h-[500px] sm:rounded-[42px]">
-          <img src="/aboutus.jpg" alt="SpecterEdu students and counsellors" className="absolute inset-0 h-full w-full object-cover" />
+          <Image
+            src="/aboutus.jpg"
+            alt="SpecterEdu students and counsellors"
+            fill
+            preload
+            fetchPriority="high"
+            sizes="100vw"
+            className="object-cover"
+          />
           <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(224,37,55,0.44)_0%,rgba(255,255,255,0.18)_42%,rgba(14,41,105,0.52)_100%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_52%_62%,rgba(224,37,55,0.82)_0%,rgba(224,37,55,0.58)_31%,rgba(14,41,105,0.42)_72%,rgba(14,41,105,0.62)_100%)] mix-blend-multiply" />
           <div className="absolute inset-x-0 bottom-0 h-2/5 bg-[linear-gradient(0deg,rgba(224,37,55,0.55),transparent)]" />
@@ -317,7 +332,13 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="relative min-h-[290px] overflow-hidden rounded-[28px] bg-background sm:min-h-[360px] lg:min-h-[390px]">
-            <img src="/about/about2.jpg" alt="Graduates celebrating with diplomas" className="absolute inset-0 h-full w-full object-cover object-center" />
+            <Image
+              src="/about/about2.jpg"
+              alt="Graduates celebrating with diplomas"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-center"
+            />
           </div>
         </div>
       </section>
@@ -466,7 +487,13 @@ export default function AboutPage() {
                 <DotPill>{student.university}</DotPill>
               </div>
               <div className="relative mt-5 min-h-[330px] overflow-hidden rounded-[28px] bg-background cursor-pointer">
-                <img src={student.image} alt={`${student.name}, student testimonial`} className={`absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${index === 1 ? "object-left" : "object-center"}`} />
+                <Image
+                  src={student.image}
+                  alt={`${student.name}, student testimonial`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className={`object-cover transition-transform duration-500 group-hover:scale-105 ${index === 1 ? "object-left" : "object-center"}`}
+                />
                 <span className="absolute inset-0 bg-black/10 transition-colors duration-300 group-hover:bg-black/20" />
                 <button type="button" onClick={(event) => openStudentVideo(student, event)} aria-label={`Play ${student.name} testimonial`} className="absolute left-1/2 top-1/2 flex cursor-pointer h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-primary shadow-[0_14px_34px_rgba(14,41,105,0.18)] transition-all duration-300 hover:scale-110 hover:bg-primary hover:text-white focus-visible:scale-110 focus-visible:bg-primary focus-visible:text-white">
                   <svg aria-hidden="true" className="h-5 w-5 translate-x-0.5 cursor-pointer" viewBox="0 0 20 20" fill="currentColor">

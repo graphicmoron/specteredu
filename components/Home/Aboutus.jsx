@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const stats = [
   {
@@ -122,9 +123,12 @@ export default function Aboutus() {
             </svg>
           </div>
 
-          <img
+          <Image
             src="/studenthome.png"
             alt="Student planning study abroad"
+            width={500}
+            height={500}
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="relative z-10 ml-auto h-full min-h-[420px] w-full object-contain object-bottom lg:min-h-[660px]"
           />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-background to-transparent" />

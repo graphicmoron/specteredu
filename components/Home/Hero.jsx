@@ -1,14 +1,19 @@
 import React from "react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
     <section id="home" className="bg-background px-3 pb-10 pt-20 sm:px-5 sm:pb-14 sm:pt-28 lg:px-8 lg:pt-40">
       <div className="mx-auto max-w-[1374px]">
         <div className="relative min-h-[620px] overflow-hidden rounded-[28px] bg-secondary shadow-[0_24px_70px_rgba(14,41,105,0.14)] sm:min-h-[660px] sm:rounded-[36px] lg:min-h-[720px]">
-          <img
+          <Image
             src="/hero1.png"
             alt="Graduates celebrating on a university campus"
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            preload
+            fetchPriority="high"
+            sizes="100vw"
+            className="object-cover"
           />
 
           <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(224,37,55,0.42)_0%,rgba(224,37,55,0.18)_28%,rgba(14,41,105,0.25)_100%)]" />

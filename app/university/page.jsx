@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const universities = [
   {
@@ -123,7 +124,7 @@ function UniversityMark({ university }) {
   return (
     <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white shadow-[0_16px_34px_rgba(14,41,105,0.10)] ring-1 ring-black/[0.04]">
       {university.logo ? (
-        <img src={university.logo} alt="" className="h-9 w-9 object-contain" />
+        <Image src={university.logo} alt="" width={36} height={36} sizes="36px" className="h-9 w-9 object-contain" />
       ) : (
         <span className="text-sm font-bold text-primary">{university.logoText}</span>
       )}
@@ -136,10 +137,14 @@ export default function Page() {
     <div>
       <section className="mx-auto max-w-[1374px] px-4 pb-16 xl:pt-40 lg:pt-40 pt-20 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[28px]">
-          <img
+          <Image
             src="/university/hero.png"
             alt="Universities in Georgia"
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            preload
+            fetchPriority="high"
+            sizes="100vw"
+            className="object-cover"
           />
 
           <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(14,41,105,0.30)_0%,rgba(224,37,55,0.10)_42%,rgba(224,37,55,0.20)_100%)]" />
