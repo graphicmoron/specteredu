@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 
 const universities = [
@@ -8,7 +9,7 @@ const universities = [
     location: "Tbilisi, Georgia",
     color: "#0E2969",
     ring: "secondary",
-    logo: "./tsmu.png",
+    logo: "/tsmu.png",
     link: "https://tbilisimedicaluniversity.com/",
   },
   {
@@ -16,7 +17,7 @@ const universities = [
     location: "Tbilisi, Georgia",
     color: "#0E2969",
     ring: "secondary",
-    logo: "./dtmu.png",
+    logo: "/dtmu.png",
     link: "https://dtmuindia.com/",
   },
   {
@@ -24,7 +25,7 @@ const universities = [
     location: "Tbilisi, Georgia",
     color: "#0B6EAD",
     ring: "primary",
-    logo: "./ug.png",
+    logo: "/ug.png",
     link: "https://www.uga.edu/",
   },
 ];
@@ -40,9 +41,12 @@ function UniversityLogo({ university }) {
         }`}
       />
       <div className="relative flex h-[74px] w-[74px] items-center justify-center rounded-full bg-white shadow-[0_18px_38px_rgba(14,41,105,0.1)] ring-1 ring-black/[0.03] transition-transform duration-500 group-hover:scale-105">
-        <img
+        <Image
           src={university.logo}
           alt={university.name}
+          width={74}
+          height={74}
+          sizes="74px"
           className="h-11 w-11 object-contain"
         />
       </div>

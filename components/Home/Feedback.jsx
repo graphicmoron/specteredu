@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 
 const reviews = [
   {
@@ -160,10 +161,12 @@ export default function Feedback() {
               className="group relative aspect-video w-full max-w-[520px] overflow-hidden rounded-[22px] bg-secondary text-white sm:h-[282px] sm:aspect-auto"
               aria-label="Open student feedback video"
             >
-              <img
-                src="https://img.youtube.com/vi/ysz5S6PUM-U/hqdefault.jpg"
+              <Image
+                src="/public/aboutus.jpg"
                 alt=""
-                className="h-full w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105"
+                fill
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                className="object-cover opacity-90 transition-transform duration-500 group-hover:scale-105"
               />
               <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,41,105,0.04),rgba(14,41,105,0.34))]" />
               <span className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-primary shadow-[0_16px_36px_rgba(14,41,105,0.22)] transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white sm:h-16 sm:w-16">

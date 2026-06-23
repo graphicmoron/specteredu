@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = [
   { label: "Home", href: "/" },
@@ -69,10 +70,12 @@ export default function Footer() {
     <footer className="bg-background px-4 pb-6 pt-10 text-txt-primary sm:px-6 sm:pb-8 sm:pt-14 lg:px-8">
       <div className="mx-auto max-w-[1360px]">
         <section className="relative overflow-hidden rounded-[28px] bg-primary text-center text-white shadow-[0_22px_60px_rgba(224,37,55,0.18)] sm:rounded-[34px]">
-          <img
+          <Image
             src="/hero1.png"
             alt="Graduates celebrating"
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            sizes="100vw"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(14,41,105,0.65)_0%,rgba(224,37,55,0.86)_42%,rgba(224,37,55,0.72)_100%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(224,37,55,0.94)_0%,rgba(224,37,55,0.7)_36%,rgba(14,41,105,0.62)_100%)] mix-blend-multiply" />
@@ -106,7 +109,7 @@ export default function Footer() {
           <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr_0.85fr_1.5fr] lg:items-start">
             <div>
               <a href="#" className="inline-flex items-center" aria-label="SpecterEdu Study Abroad home">
-                <img src="/logo.png" alt="SpecterEdu Study Abroad" className="h-14 w-auto object-contain" />
+                <Image src="/logo.png" alt="SpecterEdu Study Abroad" width={194} height={67} className="h-14 w-auto object-contain" />
               </a>
             </div>
 
