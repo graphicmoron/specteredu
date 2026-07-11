@@ -99,7 +99,7 @@ export default function Founders() {
                   className="rounded-full border-2 border-primary object-cover"
                 />
                 <span>
-                  <strong className="block text-base font-semibold text-black">Nayan Sankhala</strong>
+                  <strong className="block text-base font-semibold text-black">Shailesh Sankhala</strong>
                   <span className="mt-0.5 block text-sm text-txt-secondary">Founder, SpecterEdu</span>
                 </span>
               </div>
